@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="./../../3rd/bootstrap-4/css/bootstrap.css">
+
+</head>
+<body>
+
+<!-- data-target触发模态弹出窗元素 -->
+<button class="btn btn-primary" data-toggle="modal" data-target="#mymodal-data"
+        type="button">通过data-target触发</button>
+<!-- 模态弹出窗内容 -->
+<div class="modal fade" id="mymodal-data" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">
+                    Close</span></button>
+                <h4 class="modal-title">模态弹出窗标题</h4>
+            </div>
+            <div class="modal-body">
+                <p>模态弹出窗主体内容</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="./../../3rd/jquery-3.js"></script>
+<script src="./../../3rd/bootstrap-4/js/bootstrap.js"></script>
+
+
+</html>
