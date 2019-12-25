@@ -2,8 +2,8 @@
  * Created by oudream on 2016/12/31.
  */
 
-require('./../cjencoding_charset');
-let expect = require('./../../3rd/chai-3.5.0').expect;
+require('./../cjencoding_charset_lang');
+let expect = require('./../../chai-4').expect;
 
 
 describe('CjEncodingCharset', function() {

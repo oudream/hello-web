@@ -6,8 +6,8 @@ let fs = require('fs');
 let path = require('path');
 let http = require('http');
 
-require('./../cjstring');
-let expect = require('./../../3rd/chai-3.5.0').expect;
+require('./../cjstring_lang');
+let expect = require('./../../chai-4').expect;
 
 
 describe('CjString', function() {

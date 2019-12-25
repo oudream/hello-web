@@ -3,7 +3,7 @@
  */
 
 require('./../cjencoding');
-let expect = require('./../../3rd/chai-3.5.0').expect;
+let expect = require('./../../chai-4').expect;
 
 
 describe('CjEncoding', function() {

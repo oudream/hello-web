@@ -1,9 +1,5 @@
-/**
- * Created by oudream on 2016/12/16.
- */
-
-require('./../cjmeta');
-let expect = require('./../../3rd/chai-3.5.0').expect;
+require('./../cjmeta_lang');
+let expect = require('./../../chai-4').expect;
 
 describe('CjMeta', function() {
     it('getObjectClassName', function() {

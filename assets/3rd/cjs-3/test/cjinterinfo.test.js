@@ -1,5 +1,5 @@
-require('./../cjinterinfo.js');
-let expect = require('./../../3rd/chai-3.5.0').expect;
+require('./../cjinterinfo_lang');
+let expect = require('./../../chai-4').expect;
 
 
 describe('CjInterinfo', function() {
