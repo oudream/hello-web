@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="load-render1.js"></script>
+
+</head>
+<body>
+
+<div>11</div>
+<div>22</div>
+<script>
+    console.log(document.body.innerHTML);
+    console.log('--- document.body.innerHTML document.body.innerText --- inter1 ---');
+    console.log(document.body.innerText);
+</script>
+
+<script src="load-render2.js"></script>
+
+<div>33</div>
+<div>44</div>
+
+</body>
+<script>
+    console.log(document.body.innerHTML);
+    console.log('--- document.body.innerHTML document.body.innerText --- inter2 ---');
+    console.log(document.body.innerText);
+</script>
+
+<script src="load-render3.js"></script>
+
+</html>
