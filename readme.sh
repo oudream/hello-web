@@ -3,7 +3,7 @@
 
 http://localhost:8008/web/hello-web/assets/hello/boostrap/data-toggle1.html
 
-http://localhost:8008/web/hello-web/assets/hello/dialog/modal1.html
+http://localhost:8008/web/hello-web/assets/hello/load-render/process1.html
 
 
 
