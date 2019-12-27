@@ -1,4 +1,23 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+var SwaggerPetstore = require('./javascript/src/index');
+SwaggerPetstore.ApiClient.instance.basePath = 'http://localhost:2288/v2';
+var apiInstance = new SwaggerPetstore.UserApi();
+var body = new SwaggerPetstore.User(); // User | Created user object
+var callback = function(error, data, response) {
+    if (error) {
+        window.document.getElementById('systemInfoEd').innerHTML = JSON.stringify(error);
+        console.error(error);
+    }
+    else {
+        window.document.getElementById('systemInfoEd').innerHTML = JSON.stringify('API called successfully.');
+        window.document.getElementById('dataInfoEd').innerHTML = JSON.stringify(data);
+        console.log('API called successfully.');
+        console.log(data);
+    }
+};
+apiInstance.createUser(body, callback);
+
+},{"./javascript/src/index":13}],2:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -175,7 +194,7 @@ Emitter.prototype.hasListeners = function(event){
   return !! this.listeners(event).length;
 };
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
  * Root reference for iframes.
  */
@@ -1084,7 +1103,7 @@ request.put = function(url, data, fn){
   return req;
 };
 
-},{"./is-object":3,"./request-base":4,"./response-base":5,"./should-retry":6,"component-emitter":1}],3:[function(require,module,exports){
+},{"./is-object":4,"./request-base":5,"./response-base":6,"./should-retry":7,"component-emitter":2}],4:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1101,7 +1120,7 @@ function isObject(obj) {
 
 module.exports = isObject;
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1740,7 +1759,7 @@ RequestBase.prototype._setTimeouts = function() {
   }
 }
 
-},{"./is-object":3}],5:[function(require,module,exports){
+},{"./is-object":4}],6:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1876,7 +1895,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
     this.notFound = 404 == status;
 };
 
-},{"./utils":7}],6:[function(require,module,exports){
+},{"./utils":8}],7:[function(require,module,exports){
 'use strict';
 
 var ERROR_CODES = [
@@ -1903,7 +1922,7 @@ module.exports = function shouldRetry(err, res) {
   return false;
 };
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 /**
@@ -1974,7 +1993,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
   return header;
 };
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function (Buffer){
 /*
  * Swagger Petstore
@@ -2481,8 +2500,8 @@ exports.cleanHeader = function(header, shouldStripCookie){
    */
   exports.parseDate = function(str) {
     // OpenAPI 2.0 & 3.0 specs state that:
-    // - date values are serialized as ISO-8601 full-date strings. 
-    // - date-time values are serialized as ISO-8601 date-time strings, in which the timezone offset is mandatory. 
+    // - date values are serialized as ISO-8601 full-date strings.
+    // - date-time values are serialized as ISO-8601 date-time strings, in which the timezone offset is mandatory.
     return new Date(str);
   };
 
@@ -2580,7 +2599,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 }));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":20,"fs":19,"querystring":24,"superagent":2}],9:[function(require,module,exports){
+},{"buffer":21,"fs":20,"querystring":25,"superagent":3}],10:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -2621,7 +2640,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
    */
 
   /**
-   * Constructs a new PetApi. 
+   * Constructs a new PetApi.
    * @alias module:api/PetApi
    * @class
    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
@@ -2641,7 +2660,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Add a new pet to the store
-     * 
+     *
      * @param {Object} opts Optional parameters
      * @param {module:model/Pet} opts.body Pet object that needs to be added to the store
      * @param {module:api/PetApi~addPetCallback} callback The callback function, accepting three arguments: error, data, response
@@ -2684,10 +2703,10 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Deletes a pet
-     * 
+     *
      * @param {Number} petId Pet id to delete
      * @param {Object} opts Optional parameters
-     * @param {String} opts.apiKey 
+     * @param {String} opts.apiKey
      * @param {module:api/PetApi~deletePetCallback} callback The callback function, accepting three arguments: error, data, response
      */
     this.deletePet = function(petId, opts, callback) {
@@ -2879,7 +2898,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Update an existing pet
-     * 
+     *
      * @param {Object} opts Optional parameters
      * @param {module:model/Pet} opts.body Pet object that needs to be added to the store
      * @param {module:api/PetApi~updatePetCallback} callback The callback function, accepting three arguments: error, data, response
@@ -2922,7 +2941,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Updates a pet in the store with form data
-     * 
+     *
      * @param {String} petId ID of pet that needs to be updated
      * @param {Object} opts Optional parameters
      * @param {String} opts.name Updated name of the pet
@@ -2975,7 +2994,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * uploads an image
-     * 
+     *
      * @param {Number} petId ID of pet to update
      * @param {Object} opts Optional parameters
      * @param {String} opts.additionalMetadata Additional data to pass to server
@@ -3022,7 +3041,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
   return exports;
 }));
 
-},{"../ApiClient":8,"../model/Pet":15}],10:[function(require,module,exports){
+},{"../ApiClient":9,"../model/Pet":16}],11:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -3063,7 +3082,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
    */
 
   /**
-   * Constructs a new StoreApi. 
+   * Constructs a new StoreApi.
    * @alias module:api/StoreApi
    * @class
    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
@@ -3219,7 +3238,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Place an order for a pet
-     * 
+     *
      * @param {Object} opts Optional parameters
      * @param {module:model/Order} opts.body order placed for purchasing the pet
      * @param {module:api/StoreApi~placeOrderCallback} callback The callback function, accepting three arguments: error, data, response
@@ -3257,7 +3276,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
   return exports;
 }));
 
-},{"../ApiClient":8,"../model/Order":14}],11:[function(require,module,exports){
+},{"../ApiClient":9,"../model/Order":15}],12:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -3298,7 +3317,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
    */
 
   /**
-   * Constructs a new UserApi. 
+   * Constructs a new UserApi.
    * @alias module:api/UserApi
    * @class
    * @param {module:ApiClient} [apiClient] Optional API client implementation to use,
@@ -3361,7 +3380,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Creates list of users with given input array
-     * 
+     *
      * @param {Object} opts Optional parameters
      * @param {Array.<module:model/User>} opts.body List of user object
      * @param {module:api/UserApi~createUsersWithArrayInputCallback} callback The callback function, accepting three arguments: error, data, response
@@ -3404,7 +3423,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Creates list of users with given input array
-     * 
+     *
      * @param {Object} opts Optional parameters
      * @param {Array.<module:model/User>} opts.body List of user object
      * @param {module:api/UserApi~createUsersWithListInputCallback} callback The callback function, accepting three arguments: error, data, response
@@ -3494,8 +3513,8 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Get user by user name
-     * 
-     * @param {String} username The name that needs to be fetched. Use user1 for testing. 
+     *
+     * @param {String} username The name that needs to be fetched. Use user1 for testing.
      * @param {module:api/UserApi~getUserByNameCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/User}
      */
@@ -3542,7 +3561,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Logs user into the system
-     * 
+     *
      * @param {Object} opts Optional parameters
      * @param {String} opts.username The user name for login
      * @param {String} opts.password The password for login in clear text
@@ -3589,7 +3608,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
     /**
      * Logs out current logged in user session
-     * 
+     *
      * @param {module:api/UserApi~logoutUserCallback} callback The callback function, accepting three arguments: error, data, response
      */
     this.logoutUser = function(callback) {
@@ -3673,7 +3692,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
   return exports;
 }));
 
-},{"../ApiClient":8,"../model/User":17}],12:[function(require,module,exports){
+},{"../ApiClient":9,"../model/User":18}],13:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -3783,7 +3802,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
   return exports;
 }));
 
-},{"./ApiClient":8,"./api/PetApi":9,"./api/StoreApi":10,"./api/UserApi":11,"./model/Category":13,"./model/Order":14,"./model/Pet":15,"./model/Tag":16,"./model/User":17}],13:[function(require,module,exports){
+},{"./ApiClient":9,"./api/PetApi":10,"./api/StoreApi":11,"./api/UserApi":12,"./model/Category":14,"./model/Order":15,"./model/Pet":16,"./model/Tag":17,"./model/User":18}],14:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -3863,7 +3882,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
 }));
 
-},{"../ApiClient":8}],14:[function(require,module,exports){
+},{"../ApiClient":9}],15:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -3998,7 +4017,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
 }));
 
-},{"../ApiClient":8}],15:[function(require,module,exports){
+},{"../ApiClient":9}],16:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -4042,8 +4061,8 @@ exports.cleanHeader = function(header, shouldStripCookie){
    * Constructs a new <code>Pet</code>.
    * @alias module:model/Pet
    * @class
-   * @param name {String} 
-   * @param photoUrls {Array.<String>} 
+   * @param name {String}
+   * @param photoUrls {Array.<String>}
    */
   var exports = function(name, photoUrls) {
     this.name = name;
@@ -4137,7 +4156,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
 }));
 
-},{"../ApiClient":8,"./Category":13,"./Tag":16}],16:[function(require,module,exports){
+},{"../ApiClient":9,"./Category":14,"./Tag":17}],17:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -4217,7 +4236,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
 }));
 
-},{"../ApiClient":8}],17:[function(require,module,exports){
+},{"../ApiClient":9}],18:[function(require,module,exports){
 /*
  * Swagger Petstore
  * This is a sample server Petstore server.  You can find out more about Swagger at <a href=\"http://swagger.io\">http://swagger.io</a> or on irc.freenode.net, #swagger.  For this sample, you can use the api key \"special-key\" to test the authorization filters
@@ -4340,7 +4359,7 @@ exports.cleanHeader = function(header, shouldStripCookie){
 
 }));
 
-},{"../ApiClient":8}],18:[function(require,module,exports){
+},{"../ApiClient":9}],19:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -4494,9 +4513,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],19:[function(require,module,exports){
-
 },{}],20:[function(require,module,exports){
+
+},{}],21:[function(require,module,exports){
 (function (Buffer){
 /*!
  * The buffer module from node.js, for the browser.
@@ -6299,7 +6318,7 @@ var hexSliceLookupTable = (function () {
 })()
 
 }).call(this,require("buffer").Buffer)
-},{"base64-js":18,"buffer":20,"ieee754":21}],21:[function(require,module,exports){
+},{"base64-js":19,"buffer":21,"ieee754":22}],22:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -6385,7 +6404,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6471,7 +6490,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -6558,10 +6577,10 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":22,"./encode":23}]},{},[12]);
+},{"./decode":23,"./encode":24}]},{},[1]);
