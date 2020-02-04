@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>RTLOG-DIRS</title>
+
+    <!-- At the bottom of head tab -->
+    <link rel="stylesheet" href="./../../3rd/bootstrap-4/css/bootstrap.css">
+    <link rel="stylesheet" href="./../../3rd/fontawesome-free-5.11/css/all.css">
+    <script src="./../../3rd/jquery-3.js"></script>
+    <script src="./../../3rd/bootstrap-4/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="head.css">
+
+</head>
+<body>
+
+<table class="table table-hover">
+    <caption>RTLOG-DIRS</caption>
+    <tbody id="tbody-rtlog-dirs">
+    </tbody>
+</table>
+
+</body>
+
+<!-- under body tab -->
+<script src="./head.js"></script>
+
+<script>
+    window.gclRtLog = window.gclRtLog || {};
+    let gclRtLog = window.gclRtLog;
+
+    gclRtLog.reqRtlogDir = function () {
+        let xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("post", "xxx.filesystem?fncode=req.fs_path_list_v101&filetype=json", true);
+        xmlhttp.setRequestHeader("POWERED-BY-AID", "Approve");
+        xmlhttp.setRequestHeader('Content-Type', 'json');
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                gclRtLog.dealRtlogDir(xmlhttp.responseText)
+            }
+        };
+        let joReq = {
+            session: "sbid=0001;xxx=adfadsf",
+            structtype: "fs_path_list_v101",
+            params:
+                [
+                    {
+                        urltype: "deploy",
+                        url: "data/gcl_svr_rtdbs"
+                    }
+                ]
+        };
+        let r = xmlhttp.send(JSON.stringify(joReq));
+        console.log("send req fs_path_list_v101：" + Date() + ", result: " + r)
+    };
+
+    gclRtLog.dealRtlogDir = function (response) {
+        let arr = JSON.parse(response);
+        let pathInfos = arr.data;
+        let i;
+        let out = "<thead><tr><td>行号" +
+            "</td><td>目录名称-fileName" +
+            "</td><td>创建时间-creationTime" +
+            "</td><td>修改时间-lastWriteTime" +
+            "</td></tr></thead>";
+
+        for (i = 0; i < pathInfos.length; i++) {
+            let pathInfo = pathInfos[i];
+            if (pathInfo.pathType !== 'directory') {
+                console.log('dealRtlogDir do not show- pathInfo.pathType:' + pathInfo.pathType);
+                continue;
+            }
+            out += "<tr><td>" +
+                String(i) +
+                "</td><td>" +
+                pathInfo.fileName +
+                "</td><td>" +
+                (new Date(pathInfo.creationTime)).toString() +
+                "</td><td>" +
+                (new Date(pathInfo.lastWriteTime)).toString() +
+                "</td></tr>";
+        }
+        out += "</table>";
+        document.getElementById("tbody-rtlog-dirs").innerHTML = out;
+
+        gclRtLog.updateDirsEvents();
+    };
+
+    gclRtLog.updateDirsEvents = function () {
+        $("#tbody-rtlog-dirs tr").click(function (event) {
+            if (event.currentTarget instanceof HTMLTableRowElement) {
+                let row = event.currentTarget;
+                if (row.cells.length > 1) {
+                    let cell0 = row.cells[1];
+                    let sDirName = cell0.innerText;
+                    window.open('./test_rtlog_files.html?logdir=' + sDirName);
+                }
+                console.log('#tbody-rtlog-dirs tr click!');
+            }
+        });
+    };
+
+    gclRtLog.reqRtlogDir();
+</script>
+
+</html>

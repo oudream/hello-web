@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @media (orientation: portrait) {
+            #grid {
+                display: grid;
+
+                /* The rows, columns and areas of the grid are defined visually
+                 * using the grid-template-areas property.  Each string is a row,
+                 * and each word an area.  The number of words in a string
+                 * determines the number of columns. Note the number of words
+                 * in each string must be identical. */
+                grid-template-areas: "title stats"
+                "score stats"
+                "board board"
+                "ctrls ctrls";
+
+                /* The way to size columns and rows can be assigned with the
+                 * grid-template-columns and grid-template-rows properties. */
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto 1fr auto;
+            }
+        }
+
+        @media (orientation: landscape) {
+            #grid {
+                display: grid;
+
+                /* Again the template property defines areas of the same name,
+                 * but this time positioned differently to better suit a
+                 * landscape orientation. */
+                grid-template-areas: "title board"
+                "stats board"
+                "score ctrls";
+
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+        }
+
+        /* The grid-area property places a grid item into a named
+         * area of the grid. */
+        #title    { grid-area: title }
+        #score    { grid-area: score }
+        #stats    { grid-area: stats }
+        #board    { grid-area: board }
+        #controls { grid-area: ctrls }
+    </style>
+</head>
+<body>
+
+<div id="grid">
+    <div id="title">Game Title</div>
+    <div id="score">Score</div>
+    <div id="stats">Stats</div>
+    <div id="board">Board</div>
+    <div id="controls">Controls</div>
+</div>
+
+</body>
+</html>

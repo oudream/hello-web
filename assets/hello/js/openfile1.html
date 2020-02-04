@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    // svg-editor.js at line 4972
+    var open = $('<input type="file">').change(function() {
+        var f = this;
+        editor.openPrep(function(ok) {
+            if (!ok) {return;}
+            svgCanvas.clear();
+            if (f.files.length === 1) {
+                $.process_cancel(uiStrings.notification.loadingImage);
+                var reader = new FileReader();
+                reader.onloadend = function(e) {
+                    loadSvgString(e.target.result);
+                    updateCanvas();
+                };
+                reader.readAsText(f.files[0]);
+            }
+        });
+    });
+    $('#tool_open').show().prepend(open);
+</script>
+
+</html>

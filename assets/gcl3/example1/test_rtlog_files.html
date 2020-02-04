@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RTLOG-FILES</title>
+
+	<!-- At the bottom of head tab -->
+	<link rel="stylesheet" href="./../../3rd/bootstrap-4/css/bootstrap.css">
+	<link rel="stylesheet" href="./../../3rd/fontawesome-free-5.11/css/all.css">
+	<script src="./../../3rd/jquery-3.js"></script>
+	<script src="./../../3rd/bootstrap-4/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="head.css">
+
+</head>
+<body>
+
+<table class="table table-hover">
+	<caption>RTLOG-FILES</caption>
+	<tbody id="tbody-rtlog-dirs">
+	</tbody>
+</table>
+
+</body>
+
+<!-- under body tab -->
+<script src="./head.js"></script>
+
+<script>
+	let _getUrlParam = function (name) {
+		let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+		let r = window.location.search.substr(1).match(reg);
+		if (r != null) return decodeURI(r[2]); return null;
+	};
+
+	window.gclRtLog = window.gclRtLog || {};
+    let gclRtLog = window.gclRtLog;
+
+
+    let f_sLogDir = _getUrlParam('logdir');
+
+    gclRtLog.reqRtlogFiles = function (sLogdir) {
+        if (! sLogdir) return;
+        let xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.open("post", "xxx.filesystem?fncode=req.fs_path_list_v101&filetype=json", true);
+        xmlhttp.setRequestHeader("POWERED-BY-AID", "Approve");
+        xmlhttp.setRequestHeader('Content-Type', 'json');
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                gclRtLog.dealRtlogFiles(xmlhttp.responseText)
+            }
+        };
+        let joReq = {
+            session: "sbid=0001;xxx=adfadsf",
+            structtype: "fs_path_list_v101",
+            params:
+                [
+                    {
+                        urltype: "deploy",
+                        url: "data/gcl_svr_rtdbs/" + sLogdir
+                    }
+                ]
+        };
+        let r = xmlhttp.send(JSON.stringify(joReq));
+        console.log("send req fs_path_list_v101：" + Date() + ", result: " + r)
+    };
+
+    gclRtLog.dealRtlogFiles = function (response) {
+        let respObj;
+        try {
+            respObj = JSON.parse(response);
+            console.log(respObj);
+        } catch (e) {
+            console.log(response);
+            console.log(e);
+        }
+        let pathInfos = respObj.data;
+        let i;
+        let sOut = "<thead><tr><td>行号" +
+            "</td><td>文件名称-fileName" +
+            "</td><td>文件大小-fileSize" +
+            "</td><td>创建时间-creationTime" +
+            "</td><td>修改时间-lastWriteTime" +
+            "</td></tr></thead>";
+
+        for (i = 0; i < pathInfos.length; i++) {
+            let pathInfo = pathInfos[i];
+            if (pathInfo.pathType !== 'file') {
+                console.log('dealRtlogDir do not show- pathInfo.pathType:' + pathInfo.pathType);
+                continue;
+            }
+            sOut += "<tr><td>" +
+                String(i) +
+                "</td><td>" +
+                pathInfo.fileName +
+                "</td><td>" +
+                String((pathInfo.fileSize / 1024).toFixed(1)) + 'KB' +
+                "</td><td>" +
+                (new Date(pathInfo.creationTime)).toString() +
+                "</td><td>" +
+                (new Date(pathInfo.lastWriteTime)).toString() +
+                "</td></tr>";
+        }
+        sOut += "</table>";
+        document.getElementById("tbody-rtlog-dirs").innerHTML = sOut;
+
+        gclRtLog.updateFilesEvents();
+    };
+
+    gclRtLog.updateFilesEvents = function () {
+        $("#tbody-rtlog-dirs tr").click(function (event) {
+            if (event.currentTarget instanceof HTMLTableRowElement) {
+                let row = event.currentTarget;
+                if (row.cells.length > 1) {
+                    let cell0 = row.cells[1];
+                    let sFileName = cell0.innerText;
+                    window.open('./test_rtlog_file.html?logdir=' + f_sLogDir + '&filename=' + sFileName);
+                }
+                console.log('#tbody-rtlog-dirs tr click!');
+            }
+        });
+    };
+
+    gclRtLog.reqRtlogFiles(f_sLogDir);
+</script>
+
+</html>

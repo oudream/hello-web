@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Hello, world!</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="./../../3rd/bootstrap-4/css/bootstrap.css">
+    <link rel="stylesheet" href="./../../3rd/fontawesome-free-5.11/css/all.css">
+    <link rel="stylesheet" href="head.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+    <a class="sidebar-toggle text-light mr-3"><i class="fa fa-bars"></i></a>
+    <a class="navbar-brand" href="#"><i class="fa fa-code-branch"></i> Navbar</a>
+    <div class="navbar-collapse collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown">
+                    <i class="fa fa-user"></i> Username
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="d-flex">
+    <nav class="sidebar bg-dark ">
+        <ul class="list-unstyled">
+            <!--            target="_blank"-->
+            <li><a href="#"><i class="fa fa-fw fa-link"></i>HOME</a></li>
+
+            <li>
+                <a href="#submenu2" data-toggle="collapse"><i class="fa fa-fw fa-address-card"></i>Bus Debug</a>
+                <ul id="submenu2" class="list-unstyled collapse.show">
+                    <li><a href="./viewer.html">VIEWER</a></li>
+                    <li><a href="./poster.html">POSTER</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#"><i class="fa fa-fw fa-angle-right"></i> Sidebar Link</a></li>
+            <li><a href="#"><i class="fa fa-fw fa-link"></i> Sidebar Link</a></li>
+        </ul>
+        <ul class="list-unstyled">
+            <li>
+                <a href="#submenu3" data-toggle="collapse"><i class="fa fa-fw fa-address-card"></i>Bus Log</a>
+                <ul id="submenu3" class="list-unstyled collapse">
+                    <li><a href="test_svg1.html">实时数据与曲线</a></li>
+                    <li><a href="test_rtlog_dirs.html">历史数据目录</a></li>
+                    <li><a href="test_rtlog_file.html?logdir=20180418&filename=0x01000005.txt">特定点的历史</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="content p-4">
+        <h1 class="display-5 mb-4">CONTENT</h1>
+    </div>
+</div>
+
+
+
+﻿
+<ul class="list-unstyled">
+    <li>
+        <a href="#submenu0" data-toggle="collapse"><i class="fa fa-fw fa-address-card"></i>BUS Log</a>
+        <ul id="submenu0" class="list-unstyled collapse">
+
+            <li><a href="./test_svg1.html">test_svg1.html</a></li>
+            <li><a href="./test_rtlog_dirs.html">test_rtlog_dirs.html</a></li>
+            <li><a href="./test_rtlog_file.html?logdir=20191127&filename=0x01000005.txt">test_rtlog_file.html?logdir=20191127&filename=0x01000005.txt</a></li>
+        </ul>
+    </li>
+</ul>
+
+<ul class="list-unstyled">
+    <li>
+        <a href="#submenu1" data-toggle="collapse"><i class="fa fa-fw fa-address-card"></i>BUS Debug</a>
+        <ul id="submenu1" class="list-unstyled collapse">
+
+            <li><a href="./viewer.html">viewer.html</a></li>
+            <li><a href="./poster.html">poster.html</a></li>
+        </ul>
+    </li>
+</ul>
+﻿
+
+<script src="./../../3rd/jquery-3.min.js"></script>
+<script src="./../../3rd/bootstrap-4/js/bootstrap.js"></script>
+<script src="./head.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .ws_iframe{
+            width: 100%;
+            height: 800px;
+        }
+    </style>
+</head>
+<body>
+<br>
+<label id="labelInfo0"></label>
+<br>
+<label id="labelInfo1"></label>
+<br>
+<br>
+<label id="labelStatu0"></label>
+<br>
+<label id="labelStatu1"></label>
+<br>
+<br>
+
+<div class="ws_iframe">
+    <iframe id="ws" title="websocket test" src="ws31.html" class="ws_iframe"></iframe>
+</div>
+
+<script>
+    document.title = 'Begin On : ' + (new Date()).toString();
+
+    var iLableInfoIndex = 0;
+    var outInfo = function (message) {
+        iLableInfoIndex++;
+        var name = "labelInfo" + String(iLableInfoIndex % 2);
+        var label = document.getElementById(name);
+        if (label) {
+            label.innerHTML = (new Date()).toString() + '   ' +  message;
+        }
+    };
+
+    var iLableStatuIndex = 0;
+    var outStatu = function (message) {
+        iLableStatuIndex++;
+        var name = "labelStatu" + String(iLableStatuIndex % 2);
+        var label = document.getElementById(name);
+        if (label) {
+            label.innerHTML = (new Date()).toString() + '   ' +  message;
+        }
+    };
+
+    var refreshWsIframeTimes = 0;
+    setInterval(function () {
+        var dtNow = Date.now();
+        var wsHeartJumpTime = window.wsHeartJumpTime || dtNow;
+        if (Date.now() - wsHeartJumpTime >1000 * 30) {
+            refreshWsIframeTimes++;
+            var iframe = document.getElementById('ws');
+            if (iframe) {
+                iframe.src = iframe.src;
+            }
+            outStatu('warn, Date.now() - wsHeartJumpTime >1000 * 30 , ws_iframe.src=ws_iframe.src(refresh)! refreshWsIframeTimes= ' + String(refreshWsIframeTimes));
+        }
+        outInfo('refresh label ');
+    }, 5000);
+</script>
+</body>
+</html>

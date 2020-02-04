@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hello2</title>
+
+    <style type="text/css">
+        h1 {
+            text-align: center
+        }
+
+        h2 {
+            text-align: left
+        }
+
+        h3 {
+            text-align: right
+        }
+
+        .td-rtdata {
+            width: 220px
+        }
+    </style>
+
+    <!-- At the bottom of head tab -->
+    <link rel="stylesheet" href="./../../3rd/bootstrap-4/css/bootstrap.css">
+    <link rel="stylesheet" href="./../../3rd/fontawesome-free-5.11/css/all.css">
+    <script src="./../../3rd/jquery-3.js"></script>
+    <script src="./../../3rd/bootstrap-4/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="head.css">
+
+    <script src="./../../3rd/d3-5.js"></script>
+    <script src="./../../3rd/Highcharts-7/code/highcharts.js"></script>
+    <script src="./../../3rd/Highcharts-7/code/modules/exporting.js"></script>
+
+</head>
+<body>
+
+<h1>Power Box</h1>
+
+<table>
+    <tr>
+        <td style="width: 450px">
+            <table>
+                <tr>
+                    <td class="td-rtdata"><div id="div-rtdata-11"></div></td>
+                    <td class="td-rtdata"><div id="div-rtdata-12"></div></td>
+                </tr>
+                <tr>
+                    <td class="td-rtdata"><div id="div-rtdata-21"></div></td>
+                    <td class="td-rtdata"><div id="div-rtdata-22"></div></td>
+                </tr>
+                <tr>
+                    <td class="td-rtdata"><div id="div-rtdata-31"></div></td>
+                    <td class="td-rtdata"><div id="div-rtdata-32"></div></td>
+                </tr>
+            </table>
+        </td>
+        <td style="width: 650px">
+            <div id="show-rt-curve-33554441" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
+            <br>
+            <div id="show-rt-curve-33554442" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
+        </td>
+    </tr>
+</table>
+
+</body>
+
+<!-- under body tab -->
+<script src="./head.js"></script>
+
+<script src="./gcl_rtdb.js"></script>
+<script src="./gcl_gis_rtdb.js"></script>
+
+<script>
+    // 16777228
+    let svgMeasures = [
+        {id: '#div-rtdata-11', url: './svg/33554433.svg'},
+        {id: '#div-rtdata-12', url: './svg/33554434.svg'},
+        {id: '#div-rtdata-21', url: './svg/33554436.svg'},
+        {id: '#div-rtdata-22', url: './svg/33554437.svg'},
+        {id: '#div-rtdata-31', url: './svg/33554435.svg'},
+        {id: '#div-rtdata-32', url: './svg/33554438.svg'},
+    ];
+
+    svgMeasures.forEach(m => {
+        fetch(m.url).then(data => data.text()).then(data => {
+            document.querySelector(m.id).innerHTML = data;
+            startRefresh();
+        }).then()
+    });
+
+    let svgLoadedCount = 0;
+    let startRefresh = () => {
+        svgLoadedCount++;
+        if (svgLoadedCount >= svgMeasures.length) {
+            gcl.gis.uiRtdb.rtdataStartRefresh();
+            gcl.gis.uiRtcurve.rtcurveStartRefresh();
+            gcl.rtdb.startSyncMeasures();
+        }
+    };
+
+</script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    let str = 'http://expressjs.com/zh-cn/4x/api.html?eq=1&ee=2';
+
+    let simplePathRegExp = /^(\/\/?(?!\/)[^\?#\s]*)(\?[^#\s]*)?$/;
+
+    let simplePath = typeof str === 'string' && simplePathRegExp.exec(str);
+
+    (function() {
+// Construct simple URL
+        if (simplePath) {
+            let pathname = simplePath[1];
+            let search = simplePath[2] || null;
+
+            let ss = search.substr(1);
+
+            console.log(pathname);
+            console.log(search);
+            console.log(ss);
+        }
+    })();
+
+</script>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head> 
+    <meta charset="utf-8"/>
+    <title>xxx</title> 
+
+    <script src="./../../3rd/jquery-3.js"></script>
+
+    <style type="text/css">
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: red;
+            color: white;
+        }
+
+        #two {
+            position: relative;
+            top: 20px;
+            left: 20px;
+            background: blue;
+        }
+
+        .box2 {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: red;
+            color: white;
+        }
+
+        #two2 {
+            float: left;
+            margin-right: 5px;
+            background: blue;
+        }
+
+        .box3 {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: #1c7430;
+            color: black;
+        }
+
+        #box4{
+            width:200px;
+            height:200px;
+            position:relative;
+        }
+        #box5{
+            position:absolute;
+            top:40px;
+            left:60px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div>
+    <div class="box" id="one">One</div>
+    <div class="box" id="two">Two</div>
+    <div class="box" id="three">Three</div>
+    <div class="box" id="four">Four</div>
+</div>
+
+<br>
+<br>
+
+<div>
+    <div class="box2" id="one2">One</div>
+    <div class="box2" id="two2">Two2</div>
+    <div class="box2" id="three2">Three</div>
+    <div class="box2" id="four2">Four</div>
+</div>
+
+<div style="margin: 30px"></div>
+
+<div>
+    <div>实现相对父级元素定位? 不添加:top,bottom,left,right样式，通过margin定位</div>
+    <div class="box3" id="one3" style="position: absolute; margin: 50px;">One</div>
+    <div class="box3" id="two3" style="position: absolute; margin: 80px;">Two2</div>
+    <div class="box3" id="three3">Three</div>
+    <div class="box3" id="four3">Four</div>
+</div>
+
+<div style="margin: 60px"></div>
+
+<div>
+    <p>1, 参照定位的元素必须加入position:relative;</p>
+    <p>2, 定位元素加入position:absolute，便可以使用top、bottom、left、right来进行偏移定位了。</p>
+</div>
+<div id="box4" style="background: #7abaff"><!--参照定位的元素-->
+    <div id="box5">相对参照元素进行定位</div><!--相对定位元素-->
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

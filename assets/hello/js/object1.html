@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+
+    let testObject21 = function() {
+        let o = {}; HTMLElement.focus
+        o._b = undefined;
+        Object.defineProperty(o, "b", {
+            get : function(){
+                return o._b;
+            },
+            set : function(newValue){
+                o._b = newValue;
+                console.log('set o,', newValue);
+            },
+            enumerable : true,
+            configurable : true
+        });
+
+        o.b = 1;
+        o.b = [{a: 1, b: 2}, {a: 2, b: 3}];
+        let b = o.b;
+        b[0].a = 3;
+        o.b = b;
+    };
+    testObject21();
+
+
+</script>
+
+</html>

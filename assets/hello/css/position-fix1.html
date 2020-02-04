@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title></title>
+
+    <style>
+
+        .parent {
+            width: 500px;
+            height: 2500px;
+            margin: 100px;
+            background-color: #000000;
+        }
+
+        .fix {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border: 1px solid #1B6D85;
+            margin: 50px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="parent">
+
+    <h3>position:fixed 默认是相对浏览器窗口定位的,怎么实现相对父级元素定位呀?</h3>
+
+    <div class="fix">
+
+        fixed定位相对父级容器定位，不添加:top,bottom,left,right样式，通过margin定位
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* All elements with the attribute "data-vegetable"
+           are given green text */
+        [data-vegetable] {
+            color: green;
+        }
+
+        /* All elements with the attribute "data-vegetable"
+           with the exact value "liquid" are given a golden
+           background color */
+        [data-vegetable="liquid"] {
+            background-color: goldenrod;
+        }
+
+        /* All elements with the attribute "data-vegetable",
+           containing the value "spicy", even among others,
+           are given a red text color */
+        [data-vegetable~="spicy"] {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+Ingredients for my recipe: <i lang="fr-FR">Poulet basquaise</i>
+<ul>
+    <li data-quantity="1kg" data-vegetable>Tomatoes</li>
+    <li data-quantity="3" data-vegetable>Onions</li>
+    <li data-quantity="3" data-vegetable>Garlic</li>
+    <li data-quantity="700g" data-vegetable="not spicy like chili">Red pepper</li>
+    <li data-quantity="2kg" data-meat>Chicken</li>
+    <li data-quantity="optional 150g" data-meat>Bacon bits</li>
+    <li data-quantity="optional 10ml" data-vegetable="liquid">Olive oil</li>
+    <li data-quantity="25cl" data-vegetable="liquid">White wine</li>
+</ul>
+</body>
+</html>

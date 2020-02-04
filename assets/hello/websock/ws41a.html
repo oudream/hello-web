@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="./../../common/3rd/jquery-3.1.1.js"></script>
+
+<body>
+
+<div id="div-rtdata-11">
+    <script>
+        $("#div-rtdata-11").load("./svg1.svg");
+    </script>
+</div>
+
+<div id="div-status">
+    <br>
+    <label id="labelStatus0"></label>
+    <br>
+    <label id="labelStatus1"></label>
+    <br>
+    <label id="labelStatus2"></label>
+    <br>
+    <label id="labelStatus3"></label>
+    <br>
+    <label id="labelStatus4"></label>
+    <br>
+    <label id="labelStatus5"></label>
+    <br>
+    <label id="labelStatus6"></label>
+</div>
+
+<script>
+    let testWebSocketStarted = false;
+
+    let sentCache = [];
+    let receivedCache = new Map();
+
+    let outStatus = function (message, labelStatusIndex = 0) {
+        let name = "labelStatus" + String(labelStatusIndex);
+        let label = document.getElementById(name);
+        if (label) {
+            label.innerHTML = (new Date()).toLocaleString() + '   ' + message;
+        }
+    };
+
+    let pushSentCacheFullTimes = 0;
+    let pushSentCache = function (message) {
+        if (sentCache.length > 1024) {
+            pushSentCacheFullTimes++;
+            outStatus(`warn : sentCache Server : sentCache.length > 1024 : Clear! Times=${pushSentCacheFullTimes}`, 2);
+            sentCache = [];
+        }
+        sentCache.push(message);
+    };
+
+    let pushReceivedCacheFullTimes = 0;
+    let pushReceivedCache = function (obj) {
+        if (receivedCache.size > 3056) {
+            pushReceivedCacheFullTimes++;
+            outStatus(`warn : receivedCache Server : receivedCache.length > 1024 : Clear! Times=${pushReceivedCacheFullTimes}`, 3);
+            receivedCache = new Map();
+        }
+        if (obj.structtype) {
+            if (obj.structtype === 'rtlogin_v101') {
+                if (obj.reason === 'begin' || reqMeasures.length > 1024)
+                    reqMeasures = [];
+                if (obj.reason === 'end')
+                    outStatus(`obj.structtype === \'rtlogin_v101\', end. reqMeasures.length=${reqMeasures.length}`);
+                for (let i = 0; i < obj.data.length; i++) {
+                    let measure = obj.data[i];
+                    reqMeasures.push(measure);
+                }
+            }
+            else {
+                for (let i = 0; i < obj.data.length; i++) {
+                    let measure = obj.data[i];
+                    receivedCache.set(measure.id, measure);
+                }
+            }
+        }
+    };
+
+    let sentBytes = 0;
+    let sentTime = Date.now();
+    let sentStageMaxBytes = 4096 * 200;
+    let sentStageTimeNext = Date.now() + 1000;
+    let sentStageBytes = 0;
+    let sentStageReturnTimes = 0;
+    let receivedTime = Date.now();
+
+    let reqMeasures = [];
+    let rtLoginObj = {
+        session: Date.now().toString(),
+        structtype: 'rtlogin_v101',
+        params: [{userId: 9}],
+    };
+
+    let timesForPushSentCache = 0;
+    setInterval(function () {
+        ++timesForPushSentCache;
+        if (reqMeasures.length > 0 && timesForPushSentCache % 10 !== 0) {
+            let iBegin = 0;
+            while (iBegin < reqMeasures.length) {
+                pushSentCache(JSON.stringify({
+                    session: Date.now().toString(),
+                    structtype: 'rtdata_v101',
+                    params: reqMeasures.slice(iBegin, iBegin + 50),
+                }));
+                iBegin += 50;
+            }
+        }
+        else {
+            pushSentCache(JSON.stringify(rtLoginObj));
+        }
+    }, 1000);
+
+    function testWebSocket() {
+        outStatus('testWebSocket begin:');
+
+        // Create WebSocket connection.
+        const socket = new WebSocket('ws://10.32.50.57:9211');
+
+        // Send TestData
+        let sendTestData = function () {
+            let sObj = sentCache.pop();
+            if (sObj) {
+                let dtNow = Date.now();
+                if (dtNow < sentStageTimeNext) {
+                    if (sentStageBytes > sentStageMaxBytes) {
+                        sentStageReturnTimes++;
+                        return;
+                    }
+                }
+                else {
+                    sentStageTimeNext = dtNow + 1000;
+                    sentStageBytes = 0;
+                }
+                socket.send(sObj);
+                sentBytes += sObj.length;
+                sentStageBytes += sObj.length;
+                sentTime = Date.now();
+            }
+        };
+
+        let timeOutSend = function () {
+            if (sentCache.length > 0 && Date.now() - sentTime > 1000) {
+                if (testWebSocketStarted)
+                    sendTestData();
+            }
+        };
+        let sendTimeOut = null;
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            sentBytes = 0;
+            testWebSocketStarted = true;
+            sentStageTimeNext = Date.now() + 1000;
+            sendTimeOut = setInterval(timeOutSend, 1000);
+            outStatus('Open Server!');
+            sendTestData();
+        });
+
+        // Connection opened
+        socket.addEventListener('close', function (event) {
+            testWebSocketStarted = false;
+            if (sendTimeOut !== null) {
+                clearInterval(sendTimeOut);
+            }
+            outStatus('Close Server!');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            receivedTime = Date.now();
+            try {
+                pushReceivedCache(JSON.parse(event.data));
+            }
+            catch (e) {
+                outStatus('error: JSON.parse(event.data)', 4);
+            }
+            sendTestData();
+//        console.log('Message from server ', event.data);
+        });
+
+        socket.addEventListener('error', function (event) {
+            outStatus(`run begin on ${(new Date()).toLocaleString()}`, 4);
+        });
+    }
+
+    setInterval(function () {
+        outStatus('Send Message: sentBytes= ' + String(sentBytes / 1024 / 1024) + ' Mb, sentStageReturnTimes= ' + String(sentStageReturnTimes) + ' Mb, receivedCache.size= ' + String(receivedCache.size), 5);
+        receivedCache.forEach(function (value, key, map) {
+            refreshMeasuresImage(value);
+        });
+        receivedCache = new Map();
+        let topWindow = window.top;
+        topWindow.wsHeartJumpTime = Date.now();
+    }, 3000);
+
+    setInterval(function () {
+        if (!testWebSocketStarted || Date.now() - receivedTime > 1000 * 30) {
+            testWebSocket();
+        }
+    }, 10000);
+
+    testWebSocket();
+
+    // *** refresh ui
+    let svgMeasures = new Map([
+//        ["YG550H01_YC_0036", 'URI-YG550H01_YC_0042'],
+//        ["YG550H01_YC_0037", 'URI-YG550H01_YC_0043'],
+//        ["YG550H01_YC_0040", 'URI-YG550H01_YC_0046'],
+//        ["YG550H01_YC_0042", 'URI-YG550H01_YC_0048'],
+//        ["YG550H01_YC_0044", 'URI-YG550H01_YC_0050'],
+//        ["YG550H01_YC_0045", 'URI-YG550H01_YC_0051'],
+        [150441300260, 'URI-YG550H01_YC_0042'],
+        [150441300261, 'URI-YG550H01_YC_0043'],
+        [150441300264, 'URI-YG550H01_YC_0046'],
+        [150441300266, 'URI-YG550H01_YC_0048'],
+        [150441300268, 'URI-YG550H01_YC_0050'],
+        [150441300269, 'URI-YG550H01_YC_0051'],
+    ]);
+    let svgStyle_st_02 = new Map([
+        [0, 'yellow'],
+        [1, 'green'],
+        [2, 'red'],
+        [3, 'red'],
+        [4, 'red'],
+        [5, 'yellow'],
+        [-1, 'blue'],
+    ]);
+    let refreshMeasuresImage = function (measure) {
+        if (!(measure && measure.id > 0)) return;
+        let svgId = svgMeasures.get(measure.id);
+        if (!svgId) return;
+        let elSvg = document.getElementById(svgId);
+        if (!elSvg) return;
+        let color = svgStyle_st_02.get(measure.value);
+        if (! color) color = svgStyle_st_02.get(-1);
+        elSvg.setAttribute('fill', color);
+    };
+
+    outStatus(`run begin on ${(new Date()).toLocaleString()}`, 1);
+</script>
+
+
+</body>
+</html>

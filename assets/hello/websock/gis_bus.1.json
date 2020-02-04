@@ -1,0 +1,336 @@
+{
+  "neno": [1929838593, 1929838594],
+  "signal": [{
+      "desc": "设备状态",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YC_0032",
+      "ui_scheme": [{
+        "id": "rt-making-state",
+        "scheme": "st_01"
+      }]
+    },
+    {
+      "desc": "初级破碎状态",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YC_0036",
+      "ui_scheme": [{
+          "id": "URI-YG550H01_YC_0042",
+          "iframe": "svg_main",
+          "scheme": "st_02"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0042-1",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0042-2",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        }
+      ]
+    },
+    {
+      "desc": "称重状态",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YC_0037",
+
+      "ui_scheme": [{
+          "id": "URI-YG550H01_YC_0043",
+          "iframe": "svg_main",
+          "scheme": "st_02"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0043-1",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        }
+      ]
+    },
+    {
+      "desc": "二级破碎状态",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YC_0040",
+
+      "ui_scheme": [{
+          "id": "URI-YG550H01_YC_0046",
+          "iframe": "svg_main",
+          "scheme": "st_02"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0046-1",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0046-2",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        }
+      ]
+    },
+    {
+      "desc": "烘干状态",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YC_0042",
+
+      "ui_scheme": [{
+          "id": "URI-YG550H01_YC_0048",
+          "iframe": "svg_main",
+          "scheme": "st_02"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0048-1",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        }
+      ]
+    },
+    {
+      "desc": "研磨状态",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YC_0044",
+
+      "ui_scheme": [{
+          "id": "URI-YG550H01_YC_0050",
+          "iframe": "svg_main",
+          "scheme": "st_02"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0050-1",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        }
+      ]
+    },
+    {
+      "desc": "封装状态",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YC_0045",
+      "ui_scheme": [{
+          "id": "URI-YG550H01_YC_0051",
+          "iframe": "svg_main",
+          "scheme": "st_02"
+        },
+        {
+          "id": "SUB-YG550H01_YC_0051-1",
+          "iframe": "svg_main",
+          "scheme": "color_01"
+        }
+      ]
+    },
+    {
+      "desc": "初级破碎编码",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YW_0049",
+      "ui_scheme": [{
+        "id": "URI-YG550H01_YW_0049",
+        "iframe": "svg_main",
+        "scheme": "txt_01"
+      }]
+    },
+    {
+      "desc": "称重编码",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YW_0050",
+      "ui_scheme": [{
+        "id": "URI-YG550H01_YW_0050",
+        "iframe": "svg_main",
+        "scheme": "txt_01"
+      }]
+    },
+    {
+      "desc": "二级破碎编码",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YW_0053",
+      "ui_scheme": [{
+        "id": "URI-YG550H01_YW_0053",
+        "iframe": "svg_main",
+        "scheme": "txt_01"
+      }]
+    },
+    {
+      "desc": "烘干编码",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YW_0055",
+      "ui_scheme": [{
+        "id": "URI-YG550H01_YW_0055",
+        "iframe": "svg_main",
+        "scheme": "txt_01"
+      }]
+    },
+    {
+      "desc": "研磨编码",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YW_0057",
+      "ui_scheme": [{
+        "id": "URI-YG550H01_YW_0057",
+        "iframe": "svg_main",
+        "scheme": "txt_01"
+      }]
+    },
+    {
+      "desc": "封装编码",
+      "neNo": 0,
+      "signalUrl": "YG550H01_YW_0058",
+      "ui_scheme": [{
+        "id": "URI-YG550H01_YW_0058",
+        "iframe": "svg_main",
+        "scheme": "txt_01"
+      }]
+    }
+  ],
+  "scheme": {
+    "txt_01": {
+      "desc": "文本输出",
+      "text": true
+    },
+    "color_01": {
+      "desc": "颜色变化",
+      "conditions": [{
+          "condition": "=",
+          "value": 0,
+          "action": {
+            "attr": "fill:red"
+          }
+        },
+        {
+          "condition": "=",
+          "value": 1,
+          "action": {
+            "attr": "fill:white"
+          }
+        }
+      ]
+    },
+    "st_01": {
+      "desc": "状态变化",
+      "conditions": [{
+          "condition": "=",
+          "value": 0,
+          "action": {
+            "text": "停机",
+            "style": {
+              "background-color": "#DDDD00",
+              "color": "red"
+            }
+          }
+        },
+        {
+          "condition": "=",
+          "value": 1,
+          "action": {
+            "text": "故障",
+            "style": {
+              "background-color": "blue"
+            }
+          }
+        },
+        {
+          "condition": "=",
+          "value": 2,
+          "action": {
+            "text": "运行",
+            "style": {
+              "background-color": "red"
+            }
+          }
+        },
+        {
+          "condition": "=",
+          "value": 3,
+          "action": {
+            "text": "检修",
+            "style": {
+              "background-color": "blue"
+            }
+          }
+        },
+        {
+          "condition": "=",
+          "value": 4,
+          "action": {
+            "text": "急停",
+            "style": {
+              "background-color": "yellow"
+            }
+          }
+        },
+        {
+          "condition": "=",
+          "value": 5,
+          "action": {
+            "text": "就地",
+            "style": {
+              "background-color": "red"
+            }
+          }
+        }
+      ]
+    },
+    "st_02": {
+      "desc": "状态变化",
+      "conditions": [{
+          "condition": "=",
+          "value": 0,
+          "action": {
+            "attr": "fill:yellow"
+          }
+        },
+        {
+          "condition": "=",
+          "value": 1,
+          "action": {
+            "attr": "fill:green"
+          }
+        },
+        {
+          "condition": "=",
+          "value": 2,
+          "action": {
+            "attr": "fill:red"
+          }
+        },
+        {
+          "condition": "=",
+          "value": 3,
+          "action": {
+            "attr": "fill:red"
+          }
+        },
+        {
+          "condition": "=",
+          "value": 4,
+          "action": {
+            "attr": "fill:red"
+          }
+        },
+        {
+          "condition": "=",
+          "value": 5,
+          "action": {
+            "attr": "fill:yellow"
+          }
+        },
+        {
+          "condition": "def",
+          "action": {
+            "attr": "fill:blue"
+          }
+        }
+      ]
+    }
+  },
+  "pretreatment": {
+    "remainder": {
+      "desc": "余数",
+      "name": "remainder",
+      "para": [2]
+    },
+    "linearTrans_1": {
+      "desc": "线性变换",
+      "name": "linearTrans_1",
+      "para": [1, 0, 0]
+    }
+  }
+}

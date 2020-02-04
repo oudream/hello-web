@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <H1>hello regexp1</H1>
+</div>
+
+<div id="outInfo">
+
+</div>
+
+</body>
+
+<script>
+
+    let outInfo = (s) => {
+        let ele = document.getElementById('outInfo');
+        ele && (ele.textContent = s)
+    };
+
+    let test1 = () => {
+        // 1、js截取两个字符串之间的内容：
+
+        let str = '';
+        str = "aaabbbcccdddeeefff";
+        str = str.match(/aaa(\S*)fff/)[1];
+        console.log(str);//结果bbbcccdddeee
+
+        // 2、js截取某个字符串前面的内容：
+        str = "aaabbbcccdddeeefff";
+        str = str.match(/(\S*)fff/)[1];
+        console.log(str);//结果aaabbbcccddd
+
+        // 3、js截取某个字符串后面的内容：
+        str = "aaabbbcccdddeeefff";
+        str = str.match(/aaa(\S*)/)[1];
+        console.log(str);//结果bbbcccdddeeefff
+    };
+    test1();
+
+
+    let sReg1 = /cgi.1/;
+
+</script>
+
+</html>

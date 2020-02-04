@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RTLOG-FILES</title>
+
+	<script src="./../../common/3rd/jquery-3.1.1.min.js"></script>
+
+	<link rel="stylesheet" href="./../../common/3rd/bootstrap-3.3.7/css/bootstrap.min.css">
+	<script src="./../../common/3rd/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+	<script src="./../../common/3rd/highcharts-6.0.7/code/highcharts.js"></script>
+	<script src="./../../common/3rd/highcharts-6.0.7/code/modules/series-label.js"></script>
+	<script src="./../../common/3rd/highcharts-6.0.7/code/modules/exporting.js"></script>
+
+	<script src="./../../common/cjs/cjenv.js"></script>
+	<script>
+        let CjEnv = cjs.CjEnv;
+	</script>
+
+	<script src="./../../common/cc4k/rtlog_ajax.js"></script>
+	<script>
+		let rtlog = cc4k.rtlog;
+	</script>
+</head>
+<body>
+
+<table class="table table-hover">
+	<caption>RTLOG-HOURS-TABLE</caption>
+	<tbody id="tbody-rtlog-hours">
+	</tbody>
+	<tr>
+		<td>
+			<input id="edNeno1" type="text" value="1895890945">
+			<input id="edNeno2" type="text" value="1896480769">
+		</td>
+		<td>
+			<input id="edCode1" type="text" value="URL_YSX_HCCRCSBZZ_DMZJ">
+			<input id="edCode2" type="text" value="URL_YSX_QCRCZZ_RCDZ">
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<input id="edDtBegin" type="datetime-local" value="2018-06-21T13:59:59"/>
+			<input id="edDtEnd" type="datetime-local" value="2018-06-21T13:59:59"/>
+			<input id="edInterval" type="number">
+		</td>
+		<td>
+			<button id="bnShowLog"></button>
+		</td>
+	</tr>
+</table>
+
+<table class="table table-hover">
+	<caption>RTLOG-HOURS-CHART</caption>
+	<tbody id="tbody-rtlog-dirs">
+	</tbody>
+	<tr>
+		<td id="show-log-curve-1" style="width: 800px"><div style="min-width: 310px; height: 300px; margin: 0 auto"></div></td>
+	</tr>
+</table>
+
+</body>
+
+<script>
+    let currentDtBegin = null;
+    let currentDtEnd = null;
+    let currentInterval = null;
+
+    let refreshHourHighCharts = function (sUiShowId, resDataObject) {
+        if (typeof resDataObject !== 'object' || ! resDataObject.hasOwnProperty('structtype')) {
+            console.log('system error : refreshHourHighCharts.');
+            return;
+		}
+        let iState = resDataObject.state;
+        if (iState !== 0) {
+            console.log('server error: ', iState);
+            return;
+        }
+        let iLogCount = resDataObject.logcount;
+        let logObjects = resDataObject.data;
+        console.log('received logCount: ', iLogCount);
+        console.log('received logObjects.length: ', logObjects.length);
+        let series = [];
+        for (let i = 0; i < logObjects.length; i++) {
+            let data = [];
+            let resObject = logObjects[i];
+            let measure = resObject.measure;
+            let logText = resObject.log;
+            //    {
+            //     "measure": {'id': mid, 'neno':neno, 'code':code},
+            //     "logtype": 2,
+            //     "log": "#logfile.text",
+            //     "state":0
+            //     }
+			let logTime = currentDtBegin;
+            for (let j = 0; j < logText.length; ++j) {
+                data.push([
+                    new Date(logTime),
+                    Number(logText[j])]);
+                logTime += currentInterval;
+            }
+            series.push({
+                name: String(measure.neno) + '/' + measure.code,
+                data: data,
+			});
+            console.log('received logText.length: ', logText.length);
+            if (i > 3) continue;
+        }
+
+
+        var chart = Highcharts.chart(sUiShowId, {
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: sUiShowId + ' drawing ' + logObjects.length + ' points'
+                // text: '某地积雪厚度监测'
+            },
+            subtitle: {
+                text: '非规律性时间内的变化'
+            },
+            xAxis: {
+                type: 'datetime',
+                title: {
+                    text: null
+                }
+            },
+            yAxis: {
+                title: {
+                    text: '积雪 厚度 (m)'
+                },
+                min: 0
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x:%e. %b}: {point.y:.2f} m'
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        enabled: true
+                    }
+                }
+            },
+            series: series
+        });
+
+    };
+
+    let va1 = [{
+        name: '2007-2008 冬',
+        // Define the data points. All series have a dummy year
+        // of 1970/71 in order to be compared on the same x axis. Note
+        // that in JavaScript, months start at 0 for January, 1 for February etc.
+        data: [
+            [Date.UTC(1970,  9, 27), 0   ],
+            [Date.UTC(1970, 10, 10), 0.6 ],
+            [Date.UTC(1970, 10, 18), 0.7 ],
+            [Date.UTC(1970, 11,  2), 0.8 ],
+            [Date.UTC(1970, 11,  9), 0.6 ],
+            [Date.UTC(1970, 11, 16), 0.6 ],
+            [Date.UTC(1970, 11, 28), 0.67],
+            [Date.UTC(1971,  0,  1), 0.81],
+            [Date.UTC(1971,  0,  8), 0.78],
+            [Date.UTC(1971,  0, 12), 0.98],
+            [Date.UTC(1971,  0, 27), 1.84],
+            [Date.UTC(1971,  1, 10), 1.80],
+            [Date.UTC(1971,  1, 18), 1.80],
+            [Date.UTC(1971,  1, 24), 1.92],
+            [Date.UTC(1971,  2,  4), 2.49],
+            [Date.UTC(1971,  2, 11), 2.79],
+            [Date.UTC(1971,  2, 15), 2.73],
+            [Date.UTC(1971,  2, 25), 2.61],
+            [Date.UTC(1971,  3,  2), 2.76],
+            [Date.UTC(1971,  3,  6), 2.82],
+            [Date.UTC(1971,  3, 13), 2.8 ],
+            [Date.UTC(1971,  4,  3), 2.1 ],
+            [Date.UTC(1971,  4, 26), 1.1 ],
+            [Date.UTC(1971,  5,  9), 0.25],
+            [Date.UTC(1971,  5, 12), 0   ]
+        ]
+    }, {
+        name: '2008-2009 冬',
+        data: [
+            [Date.UTC(1970,  9, 18), 0   ],
+            [Date.UTC(1970,  9, 26), 0.2 ],
+            [Date.UTC(1970, 11,  1), 0.47],
+            [Date.UTC(1970, 11, 11), 0.55],
+            [Date.UTC(1970, 11, 25), 1.38],
+            [Date.UTC(1971,  0,  8), 1.38],
+            [Date.UTC(1971,  0, 15), 1.38],
+            [Date.UTC(1971,  1,  1), 1.38],
+            [Date.UTC(1971,  1,  8), 1.48],
+            [Date.UTC(1971,  1, 21), 1.5 ],
+            [Date.UTC(1971,  2, 12), 1.89],
+            [Date.UTC(1971,  2, 25), 2.0 ],
+            [Date.UTC(1971,  3,  4), 1.94],
+            [Date.UTC(1971,  3,  9), 1.91],
+            [Date.UTC(1971,  3, 13), 1.75],
+            [Date.UTC(1971,  3, 19), 1.6 ],
+            [Date.UTC(1971,  4, 25), 0.6 ],
+            [Date.UTC(1971,  4, 31), 0.35],
+            [Date.UTC(1971,  5,  7), 0   ]
+        ]
+    }, {
+        name: '2009-2010 冬',
+        data: [
+            [Date.UTC(1970,  9,  9), 0   ],
+            [Date.UTC(1970,  9, 14), 0.15],
+            [Date.UTC(1970, 10, 28), 0.35],
+            [Date.UTC(1970, 11, 12), 0.46],
+            [Date.UTC(1971,  0,  1), 0.59],
+            [Date.UTC(1971,  0, 24), 0.58],
+            [Date.UTC(1971,  1,  1), 0.62],
+            [Date.UTC(1971,  1,  7), 0.65],
+            [Date.UTC(1971,  1, 23), 0.77],
+            [Date.UTC(1971,  2,  8), 0.77],
+            [Date.UTC(1971,  2, 14), 0.79],
+            [Date.UTC(1971,  2, 24), 0.86],
+            [Date.UTC(1971,  3,  4), 0.8 ],
+            [Date.UTC(1971,  3, 18), 0.94],
+            [Date.UTC(1971,  3, 24), 0.9 ],
+            [Date.UTC(1971,  4, 16), 0.39],
+            [Date.UTC(1971,  4, 21), 0   ]
+        ]
+    }]
+
+    let reqRtlogCallback = function reqRtlogCallback(resDataObject) {
+        refreshHourHighCharts('show-log-curve-1', resDataObject);
+    };
+
+    $('#bnShowLog').click(function() {
+        // {
+        //     "measures": [{'id': mid, 'neno':neno, 'code':code}, {'id': mid, 'neno':neno, 'code':code}],
+        //     "dtbegin": 31343242341,
+        //     "dtend": 23413241234,
+        //     "interval": 1000
+        // }
+        let measures = [
+			{
+                neno: $('#edNeno1').val(),
+                code: $('#edCode1').val(),
+			},
+			{
+                neno: $('#edNeno2').val(),
+                code: $('#edCode2').val(),
+			}
+		];
+        currentDtBegin = (new Date($('#edDtBegin').val())).getTime();
+        currentDtEnd = (new Date($('#edDtEnd').val())).getTime();
+        currentInterval = Number($('#edInterval').val());
+
+        // test
+      	currentDtBegin = 1528880816298;
+      	currentDtEnd =1528897838967;
+      	currentInterval = 3600000;
+
+        rtlog.reqRtlogByPeriod(measures, currentDtBegin, currentDtEnd, currentInterval, reqRtlogCallback);
+    });
+</script>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>RTLOG-FILES</title>
+
+	<!-- At the bottom of head tab -->
+	<link rel="stylesheet" href="./../../3rd/bootstrap-4/css/bootstrap.css">
+	<link rel="stylesheet" href="./../../3rd/fontawesome-free-5.11/css/all.css">
+	<script src="./../../3rd/jquery-3.js"></script>
+	<script src="./../../3rd/bootstrap-4/js/bootstrap.js"></script>
+	<link rel="stylesheet" href="head.css">
+
+	<script src="./../../3rd/Highcharts-7/code/highcharts.js"></script>
+	<script src="./../../3rd/Highcharts-7/code/modules/series-label.js"></script>
+	<script src="./../../3rd/Highcharts-7/code/modules/exporting.js"></script>
+
+</head>
+<body>
+
+<table class="table table-hover">
+	<caption>RTLOG-HOURS-TABLE</caption>
+	<tbody id="tbody-rtlog-hours">
+	</tbody>
+</table>
+
+<table class="table table-hover">
+	<caption>RTLOG-HOURS-CHART</caption>
+	<tbody id="tbody-rtlog-dirs">
+	</tbody>
+</table>
+
+</body>
+
+<!-- under body tab -->
+<script src="./head.js"></script>
+
+<script>
+	let _getUrlParam = function (name) {
+		let reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+		let r = window.location.search.substr(1).match(reg);
+		if (r != null) return decodeURI(r[2]); return null;
+	};
+
+	window.gclRtLog = window.gclRtLog || {};
+    let gclRtLog = window.gclRtLog;
+
+    let f_sLogDir = _getUrlParam('logdir');
+    let f_sFileName = _getUrlParam('filename');
+
+    let f_logObjs = [];
+    for (let i = 0; i < 24; i++) {
+        f_logObjs.push([]);
+    }
+
+    // 0 oChangedData->changedTime,
+    // 1 oChangedData->value,
+    // 2 oChangedData->quality,
+    // 3 oChangedData->changedSourceId,
+    // 4 oChangedData->changedReasonId
+    gclRtLog.receivedLogObjArray = function (logObjArray) {
+        if (logObjArray.length < 5) {
+			return;
+        }
+        let dt1 = new Date(logObjArray[0]);
+        let logObj = {
+            changedTime: dt1,
+            data: logObjArray
+        };
+        f_logObjs[dt1.getHours()].push(logObj);
+    };
+
+    gclRtLog.reqRtlogFile = function (sLogDir, sFileName) {
+        $.ajax({
+            method: "post",
+//            url: 'http://' + window.location.host + '/data/gcl_svr_rtdbs/' + sLogDir + "/" + sFileName,
+            url: 'xxx.filesystem?fncode=req.fs_file_load_v101&filetype=json',
+            headers: {
+                'POWERED-BY-AID': 'Approve',
+                'Content-Type': 'json'
+            },
+			data: JSON.stringify({
+                session: "sbid=0001;xxx=adfadsf",
+                structtype: "fs_file_load_v101",
+                params:
+                    [
+                        {
+                            urltype: "deploy",
+                            url: "data/gcl_svr_rtdbs/" + sLogDir + "/" + sFileName
+                        }
+                    ]
+            })
+        }).done(function( msg ) {
+            let logObjArray = [];
+            let sLogObjArrayJson = "[";
+            if (msg.length>0 && msg.charAt(0) === ',') {
+                sLogObjArrayJson += msg.substring(1) + ']';
+            }
+			else {
+                console.log('received invalid msg: ', msg);
+                return;
+			}
+            try {
+                logObjArray = JSON.parse(sLogObjArrayJson);
+                console.log(logObjArray);
+            } catch (e) {
+                console.log(sLogObjArrayJson);
+                console.log(e);
+            }
+
+            let i;
+            for (i = 0; i < logObjArray.length; i++) {
+                gclRtLog.receivedLogObjArray(logObjArray[i]);
+            }
+
+            gclRtLog.refreshHoursTable();
+            gclRtLog.refreshHoursChart();
+        });
+	};
+
+    gclRtLog.refreshHoursTable = function () {
+        let out = "";
+        let logObjs = [];
+        let logObj = [];
+        let iRowCellCount = 6;
+        let i;
+        for (i = 0; i < f_logObjs.length; i++) {
+            logObjs = f_logObjs[i];
+            if (i % iRowCellCount === 0) {
+                out += "<tr><td>";
+            }
+            out += '<a href="#show-log-curve-' + String(i) + '">';
+            out += String(i+1) + 'Hour Has [ ' + String(logObjs.length) + " ] Log </a></td><td>";
+            if (i % iRowCellCount === iRowCellCount-1) {
+                out += "</td></tr>";
+            }
+        }
+        out += "</table>";
+        document.getElementById("tbody-rtlog-hours").innerHTML = out;
+    };
+
+    gclRtLog.refreshHoursChart = function () {
+        let out = "";
+        let logObjs = [];
+        let logObj = [];
+        let iRowCellCount = 2;
+        let i;
+        for (i = 0; i < f_logObjs.length; i++) {
+            logObjs = f_logObjs[i];
+            if (i % iRowCellCount === 0) {
+                out += "<tr>";
+            }
+            out += '<td id="show-log-curve-' + String(i) + '" style="width: 600px"><div style="min-width: 310px; height: 300px; margin: 0 auto"></div></td>';
+            if (i % iRowCellCount === iRowCellCount-1) {
+                out += "</tr>";
+            }
+        }
+        out += "</table>";
+        document.getElementById("tbody-rtlog-dirs").innerHTML = out;
+        gclRtLog.refreshHoursHighCharts();
+    };
+
+    gclRtLog.refreshHoursHighCharts = function () {
+        let logObjs = [];
+        let i;
+        let sUiShowId;
+        for (i = 0; i < f_logObjs.length; i++) {
+            logObjs = f_logObjs[i];
+            sUiShowId = 'show-log-curve-' + String(i);
+            gclRtLog.refreshHourHighCharts(sUiShowId, logObjs);
+        }
+    };
+
+	gclRtLog.refreshHourHighCharts = function (sUiShowId, logObjs) {
+
+        Highcharts.chart(sUiShowId, {
+
+            chart: {
+                zoomType: 'x'
+            },
+
+            title: {
+                text: sUiShowId + ' drawing ' + logObjs.length + ' points'
+            },
+
+            subtitle: {
+                text: 'Using the Boost module'
+            },
+
+            tooltip: {
+                valueDecimals: 2
+            },
+
+            xAxis: {
+                type: 'datetime'
+            },
+
+            series: [{
+                data: (function () {
+                    let data = [],
+                        logObj,
+                        i;
+                    for (i = 0; i < logObjs.length; ++i) {
+                        logObj = logObjs[i];
+                        data.push([
+                            logObj.changedTime,
+                            logObj.data[1]]);
+                    }
+                    return data;
+                }()),
+                lineWidth: 0.5,
+                name: 'Hourly data points'
+            }]
+
+        });
+    };
+
+    gclRtLog.reqRtlogFile(f_sLogDir, f_sFileName);
+</script>
+
+</html>

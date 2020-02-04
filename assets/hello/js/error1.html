@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    var fn1 = function() {
+        console.log('step1');
+        // new Error('step2 - error');
+        throw new Error('step3');
+        // throw 'step3';
+        alert('step3');
+        console.log('step4');
+    };
+    try {
+        fn1();
+    }
+    catch (e) {
+        console.log(e);
+    }
+    // fn1();
+    //
+    // var fn2 = function() {
+    //     console.log('step11');
+    //     throw 'step12';
+    //     new Error('step13 - error');
+    //     console.log('step14');
+    // };
+    // fn2();
+    //
+    // var fn3 = function() {
+    //     console.log('step21');
+    //     throw new Error('step22');
+    //     console.log('step14');
+    // };
+    // fn3();
+
+    console.log('end.');
+
+</script>
+
+</html>

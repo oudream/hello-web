@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="./../../common/3rd/jquery-3.1.1.js"></script>
+<script src="./../../common/cc4k/rtdb.js"></script>
+<script src="./../../common/cc4k/rtdb_sync.js"></script>
+
+<body>
+
+<h1>RTDB</h1>
+
+<div id="show-yx-1">
+<br>
+<div id="show-yc-1"></div>
+<br>
+<div id="show-yk-1">
+    <input id="ed-yk-1" name="ed-yk-1" type="text"/>73551319074</div>
+    <button id="bnSendYk">send.yk</button>
+</div>
+
+<script>
+    let rtdb = window.cc4k.rtdb;
+    rtdb.appendMeasureByNenoCode(1001, 'yc4');
+    rtdb.startSyncMeasures();
+    window.setInterval(function() {
+        let yc1 = rtdb.findMeasureByNenoCode(1001, 'yc4');
+        if (yc1 !== null) {
+            $('#show-yc-1').innerText = string(yc1.value);
+        }
+    }, 2000);
+
+    // req send yk - callback
+    rtdb.registerReqSetMeasureCallback(function (resSession, resMeasures) {
+        alert("reqSetMeasureCallback.retrun - \n resSession: " + string(resSession) + "\nresMeasures: " + JSON.stringify(resMeasures));
+    });
+
+    // req send yk
+    $('#bnSendYk').click(function () {
+        let sMid = $(" #ed-yk-1 ").val();
+        let iMid = Number(sMid);
+        // rtdb.reqSetMeasureByMid(iMid);
+        rtdb.reqSetMeasureByNenoCode(neno, code, v);
+    });
+
+//    $(" #test ").val()
+//    $(" input[ name='test' ] ").val()
+//    $(" input[ type='text' ] ").val()
+//    $(" input[ type='text' ]").attr("value")
+
+//    $('#ed-yk-1').dialog({
+//        autoOpen: false,
+//        title :'对话框标题',
+//        buttons:{
+//            '点我确认': function(){
+//
+//                alert('正在提交数据');
+//            },
+//            '点我取消': function(){$('#my_dialog').dialog('close');},
+//        },
+//        position: 'right bottom',
+//        width: 400,
+//        height: 300,
+//    });
+
+
+
+
+</script>
+
+</body>
+</html>

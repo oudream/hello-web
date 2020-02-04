@@ -1,0 +1,10 @@
+<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <g>
+  <title>Layer 1</title>
+  <rect fill="#000000" stroke-width="5" fill-opacity="0" x="10" y="9.18751" width="179.43751" height="131.62501" id="svg_1" stroke="#000000"/>
+  <path fill="#000000" stroke-width="5" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" fill-opacity="0" d="m116.55105,99.78355c-3.26872,15.44078 -9.34982,25.85202 -16.33999,25.88674c-10.4418,-0.0496 -18.88253,-23.17357 -18.90245,-51.7586c0.01992,-28.59991 8.46065,-51.71892 18.90245,-51.77348c6.98837,0.03472 13.06765,10.441 16.33818,25.88178l7.17489,11.32886l0.25896,0.40673c-2.37413,-30.00858 -12.10786,-52.49766 -23.77204,-52.50758c-13.44251,0.00992 -24.33524,29.8449 -24.33705,66.66369c0.00362,36.80391 10.89635,66.63889 24.33705,66.64881c11.66599,-0.00992 21.40334,-22.50892 23.77204,-52.52246l-0.25534,0.40177l-7.1767,11.34374zm7.81234,-25.87186l-12.94813,-20.48024l0,11.39334l-19.87492,0l0,18.15891l19.87492,0l0,11.39334l12.94813,-20.46536l0,0.00001z" id="svg_2" transform="rotate(-90 100.1186981201172,73.90425109863281) " stroke="#000000"/>
+  <text fill="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="78.66112" y="125.10463" id="show-rtdata-33554433" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" transform="matrix(1.6317373514175415,0,0,1.0697674751281738,-28.911854723468423,-6.880817234516144) " stroke="#000000">6123.46</text>
+  <text fill="#000000" stroke-width="0" stroke-dasharray="null" stroke-linejoin="null" stroke-linecap="null" x="79.01551" y="43.28466" font-size="24" font-family="serif" text-anchor="middle" xml:space="preserve" font-weight="bold" transform="matrix(1.6317373514175415,0,0,1.0697674751281738,-28.911854723468423,-6.880817234516144) " stroke="#000000" id="svg_4">温度</text>
+ </g>
+</svg>

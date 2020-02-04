@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<script src="./../../common/3rd/jquery-3.1.1.js"></script>
+<script src="./../../common/cc4k/app_ajax.js"></script>
+
+<body>
+
+<h1>APP-INFO</h1>
+
+<div id="show-yx-1">
+<br>
+<div id="show-yc-1"></div>
+<br>
+<div id="show-yk-1">
+    <input id="ed-session-1" name="ed-session-1" type="text" value="73551319074"/></div>
+    <button id="bnSendHeartJump">send.app.heartjump</button>
+</div>
+
+<script>
+    let app = window.cc4k.app;
+    window.setInterval(function() {
+    }, 2000);
+
+    // req send yk - callback
+    app.registerReqHeartJumpCallback(function (resSession, resData) {
+        console.log("ReqHeartJumpCallback.retrun - \n resSession: " + String(resSession) + "\nresData: " + JSON.stringify(resData));
+    });
+
+    // req send yk
+    $('#bnSendHeartJump').click(function () {
+        let sSession = $(" #ed-session-1 ").val();
+        app.sentHeartJumpEach(sSession, {});
+    });
+
+</script>
+
+</body>
+</html>

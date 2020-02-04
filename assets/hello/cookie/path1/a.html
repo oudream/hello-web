@@ -8,6 +8,10 @@
 <div id="outInfoEd"></div>
 </body>
 
+<div>
+    <a
+</div>
+
 <script>
 
     var docCookies = {
@@ -48,6 +52,8 @@
         }
     };
 
+    console.log(docCookies.getItem('user'));
+    console.log(docCookies.getItem('password'));
     docCookies.removeItem('name11');
     docCookies.removeItem('name12');
     docCookies.setItem('name11', 'value1', Date.now() + 5 * 60 * 1000, '/web/hello-web/assets/hello/cookie/');
@@ -57,6 +63,10 @@
     docCookies.removeItem('baidu12');
     docCookies.setItem('baidu11', 'value2', Date.now() + 5 * 60 * 1000, '', 'www.baidu.com');
     docCookies.setItem('baidu12', 'value2', Date.now() + 5 * 60 * 1000, '', 'www.baidu.com');
+    // docCookies.setItem('user', 'user1');
+    // docCookies.setItem('password', 'password1');
+    // docCookies.setItem('user', 'user1'+window.location.toString(), Date.now() + 5 * 60 * 1000, window.location.toString());
+    // docCookies.setItem('password', 'password1'+window.location.toString(), Date.now() + 5 * 60 * 1000, window.location.toString());
 
 
 </script>
