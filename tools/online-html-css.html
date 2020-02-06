@@ -6,7 +6,7 @@
 
 <div class="body-wrapper" style="font-family: 'Open Sans Light',Helvetica,Arial,sans-serif;">
     <h2>HTML Input</h2>
-    <textarea id="code" class="html-input" style="width: 90%;height: 10em;padding: 10px;border: 1px solid #0095dd;"><ul>
+    <textarea id="code1" class="html-input" style="width: 90%;height: 10em;padding: 10px;border: 1px solid #0095dd;"><ul>
   <li><a href="#">United Kingdom</a></li>
   <li><a href="#">Germany</a></li>
   <li><a href="#">Finland</a></li>
@@ -16,7 +16,7 @@
 </ul></textarea>
 
     <h2>CSS Input</h2>
-    <textarea id="code" class="css-input" style="width: 90%;height: 10em;padding: 10px;border: 1px solid #0095dd;">ul {
+    <textarea id="code2" class="css-input" style="width: 90%;height: 10em;padding: 10px;border: 1px solid #0095dd;">ul {
   padding: 0;
 }
 
@@ -54,16 +54,16 @@ a {
 
 
 <script type="text/javascript">
-    var htmlInput = document.querySelector(".html-input");
-    var cssInput = document.querySelector(".css-input");
-    var reset = document.getElementById("reset");
-    var htmlCode = htmlInput.value;
-    var cssCode = cssInput.value;
-    var output = document.querySelector(".output");
-    var solution = document.getElementById("solution");
+    let htmlInput = document.querySelector(".html-input");
+    let cssInput = document.querySelector(".css-input");
+    let reset = document.getElementById("reset");
+    let htmlCode = htmlInput.value;
+    let cssCode = cssInput.value;
+    let output = document.querySelector(".output");
+    let solution = document.getElementById("solution");
 
-    var styleElem = document.createElement('style');
-    var headElem = document.querySelector('head');
+    let styleElem = document.createElement('style');
+    let headElem = document.querySelector('head');
     headElem.appendChild(styleElem);
 
     function drawOutput() {
@@ -71,13 +71,13 @@ a {
         styleElem.textContent = cssInput.value;
     }
 
-    reset.addEventListener("click", function () {
+    reset.addEventListener("click", function() {
         htmlInput.value = htmlCode;
         cssInput.value = cssCode;
         drawOutput();
     });
 
-    solution.addEventListener("click", function () {
+    solution.addEventListener("click", function() {
         htmlInput.value = htmlCode;
         cssInput.value = 'ul {\n  padding: 0;\n}\n\nli {\n  padding: 3px;\n  margin-bottom: 5px;\n  list-style-type: none;\n}\n\na {\n  text-decoration: none;\n  color: black;\n}\n\na:hover {\n  text-decoration: underline;\n  color: red;\n}\n\nli:nth-of-type(2n) {\n  background-color: #ccc;\n}\n\nli:nth-of-type(2n+1) {\n  background-color: #eee;\n}';
         drawOutput();

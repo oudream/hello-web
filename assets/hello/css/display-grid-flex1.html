@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .header {
+            margin: 30px 50px 10px 50px;
+            border: 2px solid #f76707;
+            border-radius: 5px;
+            background-color: #fff4e6;
+        }
+
+        .header {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        .wrapper {
+            margin-left: 50px;
+            margin-right: 50px;
+            border: 2px solid #f76707;
+            border-radius: 5px;
+            background-color: #fff4e6;
+        }
+
+        .wrapper > div {
+            border: 2px solid #ffa94d;
+            border-radius: 5px;
+            background-color: #ffd8a8;
+            padding: 1em;
+            color: #d9480f;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 200px 1fr 3fr;
+            grid-auto-columns: minmax(100px, 1000px);
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!-- Learn about this code on MDN: https://developer.mozilla.org/zh-CN/docs/Glossary/Grid_tracks -->
+
+<div class="header">
+    <div>One</div>
+</div>
+<div class="wrapper" style="width: 1000px; max-width: 1000px;">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+    <div>Four</div>
+    <div>
+        <div>Five</div>
+        <div style="width: 150px">Five</div>
+    </div>
+</div>
+
+<div style="display: block; border: 2px solid #f76707; order-radius: 5px; word-wrap:break-word; width: 500px; max-width: 1000px; height: 110px; margin: 50px;">
+    <div style="display: block; border: 2px solid #f76707; order-radius: 5px; word-wrap:break-word; width: 500px; max-width: 1000px; height: 110px; margin: 50px;">
+        <div style="border: 2px solid #14F746;order-radius: 5px; width: 1300px; height: 100px;"></div>
+    </div>
+</div>
+
+</body>
+</html>
