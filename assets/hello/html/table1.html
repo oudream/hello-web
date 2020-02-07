@@ -1,0 +1,71 @@
+<html>
+<head>
+    <script src="./../3rd/jquery-3.1.1.js"></script>
+
+    <style>
+        td {
+            border: 1px #DDD solid;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .selected {
+            background-color: brown;
+            color: #FFF;
+        }
+    </style>
+
+    <script>
+      window.onload = function () {
+        function highlight (e) {
+          if (selected[0]) selected[0].className = ''
+          e.target.parentNode.className = 'selected'
+        }
+
+        let table = document.getElementById('table')
+        let selected = table.getElementsByClassName('selected')
+        table.onclick = highlight
+
+//        $("#tst").click(function () {
+//          var value = $(".selected td:first").html();
+//          value = value || "No row Selected";
+//          alert(value);
+//        });
+      }
+    </script>
+
+</head>
+<body>
+<table id="table">
+    <tr>
+        <td>1 Ferrari F138</td>
+        <td>1 000€</td>
+        <td>1 200€</td>
+        <td>Model monopostu stajne Scuderia Ferrari pre sezónu 2013</td>
+        <td>1</td>
+        <td>F138</td>
+        <td>Klik pre detaily</td>
+    </tr>
+    <tr>
+        <td>2 Ferrari F138</td>
+        <td>1 000€</td>
+        <td>1 200€</td>
+        <td>Model monopostu stajne Scuderia Ferrari pre sezónu 2013</td>
+        <td>1</td>
+        <td>F138</td>
+        <td>Klik pre detaily</td>
+    </tr>
+    <tr>
+        <td>3 Ferrari F138</td>
+        <td>1 000€</td>
+        <td>1 200€</td>
+        <td>Model monopostu stajne Scuderia Ferrari pre sezónu 2013</td>
+        <td>1</td>
+        <td>F138</td>
+        <td>Klik pre detaily</td>
+    </tr>
+</table>
+
+<input type="button" id="tst" value="OK" onclick="fnselect()"/>
+</body>
+</html>

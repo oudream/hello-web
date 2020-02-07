@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="svg1"></div>
+</body>
+
+<script>
+    let loadSvg = function(id, filename) {
+        fetch('./' + filename).then(data => data.text()).then(data => {
+            let ele = window.document.querySelector(id);
+            if (ele) {
+                window.document.querySelector(id).innerHTML = data;
+            }
+        }).then()
+    };
+
+    loadSvg('#svg1', '001.svg');
+
+</script>
+
+</html>

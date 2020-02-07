@@ -1,0 +1,343 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="./../../common/3rd/bootstrap-4/css/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+<div> -</div>
+
+<div class="container">
+    <form>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="First name" id="uiMidBeginEd" value="0x01000001">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="Last name" id="uiMidEndEd" value="0x010000FF">
+            </div>
+            <button type="button" class="btn btn-primary" id="uiMidScopeAddBn">Add</button>
+            <button type="button" class="btn btn-primary" id="uiMidScopeRmBn">Del</button>
+        </div>
+    </form>
+
+    <table class="table table-hover" id="uiTable">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">MID</th>
+            <th scope="col">V</th>
+            <th scope="col">Q</th>
+            <th scope="col">T</th>
+            <th scope="col">S</th>
+        </tr>
+        </thead>
+        <tbody id="uiTbody">
+        </tbody>
+    </table>
+</div>
+</body>
+
+<script>
+
+    let _mergeArray = function(arr1, arr2) {
+        let i = 0, j = 0;
+        let res = [];
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                if (res.length === 0 || res[res.length - 1] !== arr1[i]) {
+                    res.push(arr1[i]);
+                }
+                i++;
+            }
+            else {
+                if (res.length === 0 || res[res.length - 1] !== arr2[j]) {
+                    res.push(arr2[j]);
+                }
+                j++;
+            }
+        }
+        while (i < arr1.length) {
+            if (res.length === 0 || res[res.length - 1] !== arr1[i]) {
+                res.push(arr1[i]);
+            }
+            i++;
+        }
+        while (j < arr2.length) {
+            if (res.length === 0 || res[res.length - 1] !== arr2[j]) {
+                res.push(arr2[j]);
+            }
+            j++;
+        }
+        console.log(res);
+        return res;
+    };
+
+    let _removeArray = function(src, rm) {
+        let ms = [];
+        for (let i = 0; i < src.length; i++) {
+            if (rm.find(x => src[i] === x) === undefined) {
+                ms.push(src[i]);
+            }
+        }
+        return ms;
+    };
+
+    let EnumMeasureType = {
+        none: 0,
+        monsb: 1,
+        ycadd: 2,
+        straw: 3,
+    };
+
+    let _getMeasureTypeById = function(measureId) {
+        let iId = Number(measureId);
+        if (iId >= 0x01000000 && iId < 0x02000000) {
+            return EnumMeasureType.monsb;
+        }
+        else if (iId >= 0x02000000 && iId < 0x03000000) {
+            return EnumMeasureType.ycadd;
+        }
+        else if (iId >= 0x03000000 && iId < 0x04000000) {
+            return EnumMeasureType.straw;
+        }
+        else {
+            return EnumMeasureType.none;
+        }
+    };
+
+    let _isValidMid = function(mid) {
+        return _getMeasureTypeById(mid) !== EnumMeasureType.none;
+    };
+
+    //[{mid:0x01000001,v:2,q:1,t:34134123412,s:1}]
+    _mes = [];
+    _reqMs = null;
+
+    let _getBeginEnd = function() {
+        let uiMidBeginEd = document.getElementById('uiMidBeginEd');
+        let uiMidEndEd = document.getElementById('uiMidEndEd');
+        let b = Number(uiMidBeginEd.value);
+        let e = Number(uiMidEndEd.value);
+        if (_isValidMid(b) && !_isValidMid(e)) {
+            e = b;
+        }
+        else if (!_isValidMid(b) || !_isValidMid(e)) {
+            alert('Begin-Mid or End-Mid is invalid! Please retry input valid value!\n'
+                + 'YX: 0x01000000 ~ 0x01FFFFFF\n'
+                + 'YC: 0x02000000 ~ 0x02FFFFFF\n'
+                + 'YW: 0x03000000 ~ 0x03FFFFFF\n'
+            );
+            return null;
+        }
+        if (e < b) {
+            let i = b;
+            b = e;
+            e = i;
+        }
+        if (e - b > 1024) {
+            alert('超范围1024!');
+            return null;
+        }
+        return {b, e};
+    };
+
+    let _appendMs = function() {
+        let {b, e} = _getBeginEnd();
+        if (!b || !e) return;
+        let ms2 = [];
+        for (let i = b; i <= e; i++) {
+            ms2.push(i);
+        }
+        let ms1 = [];
+        for (let i = 0; i < _mes.length; i++) {
+            ms1.push(_mes[i].mid);
+        }
+        let ms = _mergeArray(ms1, ms2);
+        _mes = _reCreateMes(ms);
+        _reqMs = _getReqMeasures(ms);
+    };
+
+    document.getElementById('uiMidScopeAddBn').addEventListener('click', _appendMs);
+
+    let _reCreateMes = function(ms) {
+        let mes = [];
+        let dtNow = Date.now();
+        let uiTbody = document.getElementById('uiTbody');
+        let f = document.createDocumentFragment();
+        for (let i = 0; i < ms.length; i++) {
+            let me = {mid: ms[i]};
+            let tr = document.createElement("tr");
+            let th = document.createElement("th");
+            th.setAttribute("scope", "row");
+            th.innerText = i.toString();
+            tr.appendChild(th);
+            //#mid
+            if (1) {
+                let td = document.createElement("td");
+                // let text = document.createTextNode((new Date()).getTime());
+                // td.appendChild(text);
+                td.innerText = '0x' + ms[i].toString(16);
+                tr.appendChild(td);
+            }
+            //#v
+            if (2) {
+                let td = document.createElement("td");
+                // let text = document.createTextNode((new Date()).getTime());
+                // td.appendChild(text);
+                tr.appendChild(td);
+            }
+            //#q
+            if (3) {
+                let td = document.createElement("td");
+                // let text = document.createTextNode((new Date()).getTime());
+                // td.appendChild(text);
+                tr.appendChild(td);
+            }
+            //#t
+            if (4) {
+                let td = document.createElement("td");
+                // let text = document.createTextNode((new Date()).getTime());
+                // td.appendChild(text);
+                tr.appendChild(td);
+            }
+            //#s
+            if (5) {
+                let td = document.createElement("td");
+                // let text = document.createTextNode((new Date()).getTime());
+                // td.appendChild(text);
+                tr.appendChild(td);
+            }
+            f.appendChild(tr);
+            me.ele = tr;
+            mes.push(me);
+        }
+        if (0) {
+            uiTbody.innerText = "";
+            uiTbody.appendChild(f);
+        }
+        else {
+            let dt1 = Date.now() - dtNow;
+            uiTbody.innerText = "";
+            let dt2 = Date.now() - dtNow;
+            uiTbody.appendChild(f);
+            let dt3 = Date.now() - dtNow;
+            console.log('dt1: ', dt1, ', dt2: ' + dt2 + ', dt3: ' + dt3);
+        }
+        return mes;
+    };
+
+    let _removeMs = function() {
+        let {b, e} = _getBeginEnd();
+        if (!b || !e) return;
+        let ms2 = [];
+        for (let i = b; i <= e; i++) {
+            ms2.push(i);
+        }
+        let ms1 = [];
+        for (let i = 0; i < _mes.length; i++) {
+            ms1.push(_mes[i].mid);
+        }
+        let ms = _removeArray(ms1, ms2);
+        _mes = _reCreateMes(ms);
+    };
+
+    document.getElementById('uiMidScopeRmBn').addEventListener('click', _removeMs);
+
+    let _getReqMeasures = function(ms) {
+        let r = {
+            session: "sbid=0001;xxx=adfadsf",
+            structtype: "rtdata_v101",
+            params:[],
+        };
+        for (let i = 0; i < ms.length; i++) {
+            r.params.push({
+                mid: ms[i]
+            });
+        }
+        return JSON.stringify(r);
+    };
+
+    let _reqMeasures = function() {
+        if (!_reqMs) return;
+        let xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {
+            xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        let sTarget = 'xxx.rtdata';
+        xmlhttp.open('post', sTarget, true);
+        xmlhttp.setRequestHeader('POWERED-BY-AID', 'Approve');
+        xmlhttp.setRequestHeader('Content-Type', 'json');
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+                if (1) {
+                    console.log('接收：RespMeasures - ' + new Date() + ' ' + xmlhttp.response.length);
+                }
+                _dealRespMeasures(xmlhttp.responseText);
+            }
+        };
+        let r = xmlhttp.send(_reqMs);
+        if (1) {
+            console.log('发送：ReqMeasures - ' + new Date() + ' ' + r);
+        }
+    };
+
+    setInterval(_reqMeasures, 1000);
+
+    let _dealRespMeasures = function(response) {
+        if (!response) return;
+        let arr = JSON.parse(response);
+        let measures = arr.data;
+        for (let i = 0; i < measures.length; i++) {
+            let measure = measures[i];
+            let mid = measure.mid;
+            let me = _mes.find(x=>x.mid === mid);
+            if (me) {
+                let vqt = me.vqt;
+                if (vqt) {
+                    if (vqt.v !== measure.v) {
+                        if (mid > 0x02FFFFFF) {
+                            me.ele.cells[2].innerText = measure.v;
+                        } else {
+                            me.ele.cells[2].innerText = String(measure.v);
+                        }
+                        vqt.v = measure.v;
+                    }
+                    if (vqt.q !== measure.q) {
+                        me.ele.cells[3].innerText = String(measure.q);
+                        vqt.q = measure.q;
+                    }
+                    if (vqt.t !== measure.t) {
+                        me.ele.cells[4].innerText = Date(measure.t).toString;
+                        vqt.t = measure.t;
+                    }
+                    if (vqt.s !== measure.srcid) {
+                        me.ele.cells[5].innerText = String(measure.srcid);
+                        vqt.s = measure.srcid;
+                    }
+                } else {
+                    let vqt = {};
+                    if (mid > 0x02FFFFFF) {
+                        me.ele.cells[2].innerText = measure.v;
+                    } else {
+                        me.ele.cells[2].innerText = String(measure.v);
+                    }
+                    vqt.v = measure.v;
+                    me.ele.cells[3].innerText = String(measure.q);
+                    vqt.q = measure.q;
+                    me.ele.cells[4].innerText = Date(measure.t).toString;
+                    vqt.t = measure.t;
+                    me.ele.cells[5].innerText = String(measure.srcid);
+                    vqt.s = measure.srcid;
+                    me.vqt = vqt;
+                }
+            }
+        }
+    };
+
+</script>
+
+</html>

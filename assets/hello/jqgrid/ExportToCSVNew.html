@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <script src="./../../3rd/jquery-3.1.1.js"></script>
+    <script src="./../../3rd/jqGrid-5.2.1/js/jquery.jqGrid.js"></script>
+    <script src="./../../3rd/jqGrid-5.2.1/js/i18n/grid.locale-cn.js"></script>
+    <script src="./../../3rd/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="./../../3rd/jquery-ui-1.12.1/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./../../3rd/jqGrid-5.2.1/css/ui.jqgrid.css" />
+
+    <!--&lt;!&ndash; The jQuery library is a prerequisite for all jqSuite products &ndash;&gt;-->
+    <!--<script type="text/ecmascript" src="../../../js/jquery.min.js"></script>-->
+    <!--&lt;!&ndash; This is the Javascript file of jqGrid &ndash;&gt;-->
+    <!--<script type="text/ecmascript" src="../../../js/trirand/jquery.jqGrid.min.js"></script>-->
+    <!--&lt;!&ndash; This is the localization file of the grid controlling messages, labels, etc.-->
+    <!--&lt;!&ndash; We support more than 40 localizations &ndash;&gt;-->
+    <!--<script type="text/ecmascript" src="../../../js/trirand/i18n/grid.locale-en.js"></script>-->
+    <!--&lt;!&ndash; A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom &ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="../../../css/jquery-ui.css" />-->
+    <!--&lt;!&ndash; The link to the CSS that the grid needs &ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="../../../css/trirand/ui.jqgrid.css" />-->
+    <meta charset="utf-8" />
+    <title>jqGrid Export to CSV, PDF, Excel</title>
+</head>
+<body>
+
+<table id="jqGrid"></table>
+<button id="export">Export to CSV</button>
+
+<button id="bnTest1">TEST1</button>
+<button id="bnTest2">TEST2</button>
+<div id="jqGridPager"></div>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    $("#jqGrid").jqGrid({
+      url: 'data.product.json',
+//      editurl: 'clientArray',
+      mtype: "GET",
+      datatype: "json",
+      colModel: [
+        { label: 'Category Name', name: 'CategoryName', editable: true,width: 75 },
+        { label: 'Product Name', name: 'ProductName', editable: true,width: 90 },
+        { label: 'Country', name: 'Country', editable: true,width: 100 },
+        { label: 'Price',
+          name: 'Price', editable: true,
+          width: 80,
+          sorttype: 'number',
+          formatter: 'number',
+          align: 'right'
+        },
+        { label: 'Quantity', name: 'Quantity', editable: true, width: 80, sorttype: 'integer' }
+      ],
+      loadonce: true,
+      viewrecords: true,
+      footerrow: true,
+//      userDataOnFooter: true, // use the userData parameter of the JSON response to display data on footer
+      width: 780,
+      caption: "Export to CSV",
+      height: 200,
+      rowNum: 10,
+      page: 1,
+      pager: "#jqGridPager"
+    });
+
+    $("#jqGrid").navGrid("#jqGridPager",
+      { edit: true, add: false, del: false, search: false, refresh: true, view: false, align: "left" },
+      { closeAfterEdit: true }
+    );
+
+    $("#export").on("click", function(){
+      $("#jqGrid").jqGrid("exportToCsv",{
+        separator: ",",
+        separatorReplace : "", // in order to interpret numbers
+        quote : '"',
+        escquote : '"',
+        newLine : "\r\n", // navigator.userAgent.match(/Windows/) ?	'\r\n' : '\n';
+        replaceNewLine : " ",
+        includeCaption : true,
+        includeLabels : true,
+        includeGroupHeader : true,
+        includeFooter: true,
+        fileName : "jqGridExport.csv",
+        returnAsString : false
+      })
+    })
+
+    $('#bnTest1').on('click', function () {
+      let jqGrid = $('#jqGrid');
+      jqGrid.parents().css('xx');
+      console.log(jqGrid.datatype);
+    })
+
+    $('#bnTest2').on('click', function () {
+      let jqGrid = $('#jqGrid');
+      jqGrid.getSele
+      jqGrid.parents().css('xx');
+      console.log(jqGrid.datatype);
+    })
+
+
+  });
+
+</script>
+
+
+</body>
+</html>

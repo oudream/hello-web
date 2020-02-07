@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./css_w3.css">
+<body>
+
+<button class="w3-button w3-red" onclick="document.getElementById('id01').style.display='none';document.getElementById('id02').style.display='block';">Show Panel 2</button>
+<button class="w3-button w3-red" onclick="document.getElementById('id02').style.display='none';document.getElementById('id01').style.display='block';">Show Panel 1</button>
+
+<div id="id01" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+        class="w3-button w3-red w3-display-topright">x</span>
+    <p>Click on the X to close this panel1.</p>
+    <p>Click on the X to close this panel1.</p>
+</div>
+
+<div id="id02" class="w3-panel w3-green w3-display-container" style="display:none">
+  <span onclick="this.parentElement.style.display='none'"
+        class="w3-button w3-red w3-display-topright">x</span>
+    <p>Click on the X to close this pane21.</p>
+    <p>Click on the X to close this pane22.</p>
+</div>
+
+</body>
+</html>

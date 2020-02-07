@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LIMI hello tooltip</title>
+</head>
+<style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 150px;
+        background-color: blue;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* 定位 */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+</style>
+<body style="text-align:center;">
+
+<div class="tooltip">鼠标移动到这
+    <span class="tooltiptext">
+	  <div>Hello</div>
+	  <div><b>卢先生：</b></div>
+	  <div>提示内容是：xXX</div>
+  </span>
+</div>
+
+<div></div>
+
+<div  class="tooltip">
+    <svg width="120" height="120"
+         viewPort="0 0 120 120" version="1.1"
+         xmlns="http://www.w3.org/2000/svg">
+
+        <ellipse cx="60" cy="60" rx="50" ry="25"/>
+        <span class="tooltiptext">
+	  <div>Hello</div>
+	  <div><b>卢先生：</b></div>
+	  <div>提示内容是：xXX 我是 SVG 先生</div>
+	  <div>　　　　　　今天是晴天</div>
+  </span>
+    </svg>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> Common Home </title>
+    <link rel="stylesheet" href="./../3rd/bootstrap-4/css/bootstrap.css">
+    <script src="./../3rd/jquery-3.1.1.js"></script>
+    <script src="./../3rd/bootstrap-4/js/bootstrap.js"></script>
+    <link rel="icon" href="./../../Favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css_w3.css">
+
+    <script type='text/javascript'>
+      var stickyadstatus = ''
+
+      function fix_stickyad () {
+        var elem = document.getElementById('stickyadcontainer')
+        if (!elem) {return false}
+        if (document.getElementById('skyscraper')) {
+          var skyWidth = Number(w3_getStyleValue(document.getElementById('skyscraper'), 'width').replace('px', ''))
+        }
+        else {
+          var skyWidth = Number(w3_getStyleValue(document.getElementById('right'), 'width').replace('px', ''))
+        }
+        elem.style.width = skyWidth + 'px'
+        if (window.innerWidth <= 992) {
+          elem.style.position = ''
+          elem.style.top = stickypos + 'px'
+          return false
+        }
+        var stickypos = document.getElementById('stickypos').offsetTop
+        var docTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        var adHeight = Number(w3_getStyleValue(elem, 'height').replace('px', ''))
+        if (stickyadstatus == '') {
+          if ((stickypos - docTop) < 60) {
+            elem.style.position = 'fixed'
+            elem.style.top = '60px'
+            stickyadstatus = 'sticky'
+          }
+        } else {
+          if ((docTop + 60) - stickypos < 0) {
+            elem.style.position = ''
+            elem.style.top = stickypos + 'px'
+            stickyadstatus = ''
+          }
+        }
+        if (stickyadstatus == 'sticky') {
+          if ((docTop + adHeight + 60) > document.getElementById('footer').offsetTop) {
+            elem.style.position = 'absolute'
+            elem.style.top = (document.getElementById('footer').offsetTop - adHeight) + 'px'
+          } else {
+            elem.style.position = 'fixed'
+            elem.style.top = '60px'
+            stickyadstatus = 'sticky'
+          }
+        }
+      }
+
+      function w3_getStyleValue (elmnt, style) {
+        if (window.getComputedStyle) {
+          return window.getComputedStyle(elmnt, null).getPropertyValue(style)
+        } else {
+          return elmnt.currentStyle[style]
+        }
+      }
+    </script>
+
+    <style>
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        .l2-front {
+            position: relative;
+            display: none;
+            background-color: #ffffff;
+            height: 68px;
+            overflow: hidden;
+            z-index: 2;
+            padding: 0.01em 16px;
+        }
+
+        .l2-top {
+            position: fixed;
+            width: 100%;
+            z-index: 2;
+            font-size: 17px;
+            background-color: #5f5f5f;
+            color: #f1f1f1;
+            font-family: "Segoe UI", Arial, sans-serif;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            box-sizing: inherit;
+        }
+
+        .l3-top-menu {
+            margin-top: 0;
+            margin-bottom: 10px;
+            list-style: none;
+            height: 50px;
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        .l3-top-menu-item {
+            display: inline;
+        }
+
+        .l2-content {
+            margin-left: 220px;
+            padding-top: 0px;
+            transition: margin-left 0s;
+        }
+
+        .l2-left {
+            top: 66px;
+            display: block !important;
+            height: 100%;
+            width: 200px;
+            background-color: #fff;
+            position: fixed !important;
+            z-index: 1;
+            overflow: scroll;
+        }
+
+        .l2-main {
+            float: left;
+            padding: 16px;
+            transition: margin-left .4s;
+            width: 83.33333%;
+        }
+
+        .l2-light {
+            text-align: left;
+            padding: 16px 16px 0 0;
+            width: 16.66666%;
+            float: left;
+        }
+
+        .l2-foot {
+            position: fixed;
+            height: 30px;
+            width: 100%;
+            bottom: 0px;
+            z-index: 2;
+            background-color: #36e6f1 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="l2-front">
+    <h2>.COM</h2>
+</div>
+<div class="l2-top">
+    <ul class="l3-top-menu">
+        <li class="l3-top-menu-item">aaa</li>
+        <li class="l3-top-menu-item">bbb</li>
+    </ul>
+</div>
+<div class="l2-left">
+    <p>
+        left<br>left1<br>left2<br>left3<br>left4<br>left5<br>left6<br>left7<br>left8<br>left9<br>left0<br>
+        left<br>left1<br>left2<br>left3<br>left4<br>left5<br>left6<br>left7<br>left8<br>left9<br>left0<br>
+        left<br>left1<br>left2<br>left3<br>left4<br>left5<br>left6<br>left7<br>left8<br>left9<br>left0<br>
+        left<br>left1<br>left2<br>left3<br>left4<br>left5<br>left6<br>left7<br>left8<br>left9<br>left0<br>
+    </p>
+    <lu>
+        <li>aaa</li>
+        <li>bbb</li>
+    </lu>
+</div>
+<div class="l2-content">
+    <div style="height: 55px"></div>
+    <div class="l2-main">
+        <p>
+            hello<br>hello0<br>hello1<br>hello2<br>hello3<br>hello4<br>hello5<br>hello6<br>
+            hello<br>hello0<br>hello1<br>hello2<br>hello3<br>hello4<br>hello5<br>hello6<br>
+            hello<br>hello0<br>hello1<br>hello2<br>hello3<br>hello4<br>hello5<br>hello6<br>
+            hello<br>hello0<br>hello1<br>hello2<br>hello3<br>hello4<br>hello5<br>hello6<br>
+            hello<br>hello0<br>hello1<br>hello2<br>hello3<br>hello4<br>hello5<br>hello6<br>
+        </p>
+    </div>
+    <div class="l2-light">
+        <p>
+            light<br>light0<br>light1<br>light2<br>light3<br>light4<br>light5<br>light6<br>
+        </p>
+        <div>
+            <p>
+                ddddddd
+            </p>
+            <div>
+            <span>
+                xxxxxxxxxxxxxxxx<br>
+            </span>
+            </div>
+            <div style="float: left">
+            <span>
+                yyyyyyyyyyyy<br>
+            </span>
+            </div>
+        </div>
+        <p>
+            light<br>light0<br>light1<br>light2<br>light3<br>light4<br>light5<br>light6<br>
+            light<br>light0<br>light1<br>light2<br>light3<br>light4<br>light5<br>light6<br>
+            light<br>light0<br>light1<br>light2<br>light3<br>light4<br>light5<br>light6<br>
+            light<br>light0<br>light1<br>light2<br>light3<br>light4<br>light5<br>light6<br>
+            light<br>light0<br>light1<br>light2<br>light3<br>light4<br>light5<br>light6<br>
+        </p>
+    </div>
+</div>
+<div class="l2-foot">
+    <p>
+        foot
+    </p>
+</div>
+
+<script>
+  window.addEventListener('scroll', fix_stickyad)
+  window.addEventListener('resize', fix_stickyad)
+</script>
+
+</body>
+</html>

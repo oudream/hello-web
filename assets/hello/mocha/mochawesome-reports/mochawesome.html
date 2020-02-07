@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mochawesome Report Card</title>
+    
+    <link rel="stylesheet" href="css/mochawesome.css">
+  </head>
+  <body>
+
+    <!-- NAVBAR -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="report-info-cnt">
+          <h1 class="report-title">test</h1>
+          <h3 class="report-date">Thursday, December 15 2016, 07:34pm</h3>
+        </div>
+        <div class="nav-right">
+          <div class="quick-summary-cnt">
+              <ul class="list-unstyled quick-summary">
+                <li class="qs-item summary-duration" title="Duration">103<span>MS</span></li>
+                <li class="qs-item summary-suites" title="Suites">4</li>
+                <li class="qs-item summary-tests" title="Tests">6</li>
+                <li class="qs-item summary-passes" title="Passed" data-filter="passed">5</li>
+                <li class="qs-item summary-failures" title="Failed" data-filter="failed">1</li>
+                <li class="qs-item summary-pending" title="Pending" data-filter="pending">0</li>
+              </ul>          </div>
+          <button class="nav-menu-btn open-menu"><i class="icon-menu"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report Summary -->
+    <div class="summary">
+      <div class="container">
+          <div class="row">
+            <div class="summary-col summary-duration">
+              <h1 class="summary-count">103<span>MS</span></h1>
+              <h4 class="summary-label">MS</h4>
+            </div>
+            <div class="summary-col summary-suites" title="Suites">
+              <h1 class="summary-count">4</h1>
+              <h4 class="summary-label">Suites</h4>
+            </div>
+            <div class="summary-col summary-tests" title="Tests">
+              <h1 class="summary-count">6</h1>
+              <h4 class="summary-label">Tests</h4>
+            </div>
+            <div class="summary-col summary-passes" data-filter="passed" title="Passed">
+              <h1 class="summary-count">5</h1>
+              <h4 class="summary-label">Passed</h4>
+            </div>
+            <div class="summary-col summary-failures" data-filter="failed" title="Failed">
+              <h1 class="summary-count">1</h1>
+              <h4 class="summary-label">Failed</h4>
+            </div>
+            <div class="summary-col summary-pending" data-filter="pending" title="Pending">
+              <h1 class="summary-count">0</h1>
+              <h4 class="summary-label">Pending</h4>
+            </div>
+          </div>      </div>
+    </div>
+    <div class="statusbar">
+      <div class="container">
+          <div class="row">
+            <div class="status-item status-item-pending-pct">0% Pending</div>
+            <div class="status-item status-item-passing-pct success">83.3% Passing</div>
+          </div>      </div>
+    </div>
+
+    <!-- Suites -->
+    <div class="details container">
+            <section class="suite-wrap">
+          <div id="69d4da9b-65d2-4121-9e06-8fe7bea453c9" class="suite has-suites">
+            <h3 class="suite-title">obj property test</h3>
+            <h5 class="suite-filename">\hello1.js</h5>
+        
+              <section class="suite-wrap">
+          <div id="99495a08-c968-4eb9-a605-17f2a1595ae2" class="suite has-tests has-passed">
+            <h3 class="suite-title">simple obj property have</h3>
+            <h5 class="suite-filename">\hello1.js</h5>
+            <!-- Suite Chart -->
+            <div class="suite-chart-wrap">
+              <canvas id="99495a08-c968-4eb9-a605-17f2a1595ae2" class="suite-chart" width="50" height="50" data-total-passes="2" data-total-failures="0" data-total-pending="0" data-total-skipped="0"></canvas>
+            </div>
+            <div class="suite-data-wrap">
+              <!-- Suite Summary -->
+              <ul class="suite-summary list-unstyled">
+                <li class="suite-summary-item duration">3 ms</li>
+                <li class="suite-summary-item tests">2</li>
+                <li class="suite-summary-item passed">2</li>
+                <li class="suite-summary-item failed">0</li>
+                <li class="suite-summary-item pending">0</li>
+              </ul>
+              <!-- Test Info -->
+              <div class="suite-test-wrap">
+                <div class="suite-test-header" data-toggle="collapse" data-target="#99495a08-c968-4eb9-a605-17f2a1595ae2-test-list">
+                  <h4 class="suite-test-header-title">Tests</h4>
+                </div>
+                <div id="99495a08-c968-4eb9-a605-17f2a1595ae2-test-list" class="list-group test-list collapse in">
+                    <div id="e627bac6-fe24-4fcd-af70-313527227725" class="list-group-item test passed">
+          <!-- Test Heading -->
+          <div class="test-heading">
+            <h4 class="test-title">
+              <span class="text-muted hidden"> it </span>
+              property foo have
+            </h4>
+            <div class="pull-right">
+              <button class="btn btn-link btn-sm toggle-btn toggle-code collapsed" data-toggle="collapse" data-target="#e627bac6-fe24-4fcd-af70-313527227725 > .test-code.collapse">Code</button>
+              <span class="test-duration fast">3 ms</span>
+            </div>
+          </div>
+          <!-- Test Errors -->
+          <!-- Test Code -->
+          <div class="test-code collapse">
+            <pre><code class="hljs javascript small">expect(obj).to.have.property(<span class="hljs-string">'foo'</span>);</code></pre>
+          </div>
+          <!-- Test Error Stack -->
+        </div>            <div id="1b34edf8-da57-44f9-8aef-9009b92df514" class="list-group-item test passed">
+          <!-- Test Heading -->
+          <div class="test-heading">
+            <h4 class="test-title">
+              <span class="text-muted hidden"> it </span>
+              property foo have and value
+            </h4>
+            <div class="pull-right">
+              <button class="btn btn-link btn-sm toggle-btn toggle-code collapsed" data-toggle="collapse" data-target="#1b34edf8-da57-44f9-8aef-9009b92df514 > .test-code.collapse">Code</button>
+              <span class="test-duration fast">0 ms</span>
+            </div>
+          </div>
+          <!-- Test Errors -->
+          <!-- Test Code -->
+          <div class="test-code collapse">
+            <pre><code class="hljs javascript small">expect(obj).to.have.property(<span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>);</code></pre>
+          </div>
+          <!-- Test Error Stack -->
+        </div>        </div>
+              </div>
+            </div>
+        
+        
+          </div>
+        </section>
+              <section class="suite-wrap">
+          <div id="6db15a9c-1d68-4032-bd70-b0439652f87d" class="suite has-tests has-passed">
+            <h3 class="suite-title">deep obj property have</h3>
+            <h5 class="suite-filename">\hello1.js</h5>
+            <!-- Suite Chart -->
+            <div class="suite-chart-wrap">
+              <canvas id="6db15a9c-1d68-4032-bd70-b0439652f87d" class="suite-chart" width="50" height="50" data-total-passes="3" data-total-failures="0" data-total-pending="0" data-total-skipped="0"></canvas>
+            </div>
+            <div class="suite-data-wrap">
+              <!-- Suite Summary -->
+              <ul class="suite-summary list-unstyled">
+                <li class="suite-summary-item duration">4 ms</li>
+                <li class="suite-summary-item tests">3</li>
+                <li class="suite-summary-item passed">3</li>
+                <li class="suite-summary-item failed">0</li>
+                <li class="suite-summary-item pending">0</li>
+              </ul>
+              <!-- Test Info -->
+              <div class="suite-test-wrap">
+                <div class="suite-test-header" data-toggle="collapse" data-target="#6db15a9c-1d68-4032-bd70-b0439652f87d-test-list">
+                  <h4 class="suite-test-header-title">Tests</h4>
+                </div>
+                <div id="6db15a9c-1d68-4032-bd70-b0439652f87d-test-list" class="list-group test-list collapse in">
+                    <div id="ef9fcbf3-e1bc-49ad-8a11-2ac0617e75e8" class="list-group-item test passed">
+          <!-- Test Heading -->
+          <div class="test-heading">
+            <h4 class="test-title">
+              <span class="text-muted hidden"> it </span>
+              property green.tea have value
+            </h4>
+            <div class="pull-right">
+              <button class="btn btn-link btn-sm toggle-btn toggle-code collapsed" data-toggle="collapse" data-target="#ef9fcbf3-e1bc-49ad-8a11-2ac0617e75e8 > .test-code.collapse">Code</button>
+              <span class="test-duration fast">2 ms</span>
+            </div>
+          </div>
+          <!-- Test Errors -->
+          <!-- Test Code -->
+          <div class="test-code collapse">
+            <pre><code class="hljs javascript small">expect(deepObj).to.have.deep.property(<span class="hljs-string">'green.tea'</span>, <span class="hljs-string">'matcha'</span>);</code></pre>
+          </div>
+          <!-- Test Error Stack -->
+        </div>            <div id="3118c35d-e398-402e-9d93-3a6cb9bb70bb" class="list-group-item test passed">
+          <!-- Test Heading -->
+          <div class="test-heading">
+            <h4 class="test-title">
+              <span class="text-muted hidden"> it </span>
+              property teas[1] have value
+            </h4>
+            <div class="pull-right">
+              <button class="btn btn-link btn-sm toggle-btn toggle-code collapsed" data-toggle="collapse" data-target="#3118c35d-e398-402e-9d93-3a6cb9bb70bb > .test-code.collapse">Code</button>
+              <span class="test-duration fast">1 ms</span>
+            </div>
+          </div>
+          <!-- Test Errors -->
+          <!-- Test Code -->
+          <div class="test-code collapse">
+            <pre><code class="hljs javascript small">expect(deepObj).to.have.deep.property(<span class="hljs-string">'teas[1]'</span>, <span class="hljs-string">'matcha'</span>);</code></pre>
+          </div>
+          <!-- Test Error Stack -->
+        </div>            <div id="d3cc75bb-60f7-4049-93bc-610a59bcf846" class="list-group-item test passed">
+          <!-- Test Heading -->
+          <div class="test-heading">
+            <h4 class="test-title">
+              <span class="text-muted hidden"> it </span>
+              property teas[2].tea have value
+            </h4>
+            <div class="pull-right">
+              <button class="btn btn-link btn-sm toggle-btn toggle-code collapsed" data-toggle="collapse" data-target="#d3cc75bb-60f7-4049-93bc-610a59bcf846 > .test-code.collapse">Code</button>
+              <span class="test-duration fast">1 ms</span>
+            </div>
+          </div>
+          <!-- Test Errors -->
+          <!-- Test Code -->
+          <div class="test-code collapse">
+            <pre><code class="hljs javascript small">expect(deepObj).to.have.deep.property(<span class="hljs-string">'teas[2].tea'</span>, <span class="hljs-string">'konacha'</span>);</code></pre>
+          </div>
+          <!-- Test Error Stack -->
+        </div>        </div>
+              </div>
+            </div>
+        
+        
+          </div>
+        </section>
+              <section class="suite-wrap">
+          <div id="8fd6b8a3-1170-4c2c-9bbd-4eb3b8899981" class="suite has-tests has-failed">
+            <h3 class="suite-title">array test</h3>
+            <h5 class="suite-filename">\hello1.js</h5>
+            <!-- Suite Chart -->
+            <div class="suite-chart-wrap">
+              <canvas id="8fd6b8a3-1170-4c2c-9bbd-4eb3b8899981" class="suite-chart" width="50" height="50" data-total-passes="0" data-total-failures="1" data-total-pending="0" data-total-skipped="0"></canvas>
+            </div>
+            <div class="suite-data-wrap">
+              <!-- Suite Summary -->
+              <ul class="suite-summary list-unstyled">
+                <li class="suite-summary-item duration">5 ms</li>
+                <li class="suite-summary-item tests">1</li>
+                <li class="suite-summary-item passed">0</li>
+                <li class="suite-summary-item failed">1</li>
+                <li class="suite-summary-item pending">0</li>
+              </ul>
+              <!-- Test Info -->
+              <div class="suite-test-wrap">
+                <div class="suite-test-header" data-toggle="collapse" data-target="#8fd6b8a3-1170-4c2c-9bbd-4eb3b8899981-test-list">
+                  <h4 class="suite-test-header-title">Tests</h4>
+                </div>
+                <div id="8fd6b8a3-1170-4c2c-9bbd-4eb3b8899981-test-list" class="list-group test-list collapse in">
+                    <div id="bc301fe0-1d2d-4132-91d3-ca360890e304" class="list-group-item test failed">
+          <!-- Test Heading -->
+          <div class="test-heading">
+            <h4 class="test-title">
+              <span class="text-muted hidden"> it </span>
+              Sets the any flag, (opposite of the all flag) later used in the keys assertion
+            </h4>
+            <div class="pull-right">
+              <button class="btn btn-link btn-sm toggle-btn toggle-code collapsed" data-toggle="collapse" data-target="#bc301fe0-1d2d-4132-91d3-ca360890e304 > .test-code.collapse">Code</button>
+              <span class="test-duration ">5 ms</span>
+            </div>
+          </div>
+          <!-- Test Errors -->
+            <p class="test-error-message">AssertionError: expected {} to have a property &#x27;length&#x27;
+              <button class="btn btn-link btn-sm toggle-btn toggle-stack collapsed" data-toggle="collapse" data-target="#bc301fe0-1d2d-4132-91d3-ca360890e304 > .test-error-stack.collapse">Stack</button>
+            </p>
+          <!-- Test Code -->
+          <div class="test-code collapse">
+            <pre><code class="hljs javascript small">expect(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Map</span>([[<span class="hljs-number">1</span>, <span class="hljs-string">'a'</span>], [<span class="hljs-number">5</span>, <span class="hljs-string">'b'</span>]])).to.length(<span class="hljs-number">2</span>);<br><span class="hljs-comment">//expect([1,2,3]).to.include(2);</span><br><span class="hljs-comment">//expect(['a', 1]).to.deep.equal(['a', 1]);</span><br><span class="hljs-comment">//expect({"foo":1, "baz":0}).to.have.any.keys('foo');</span><br><span class="hljs-comment">//expect([1, 2, 3]).to.include.members([3, 2]);</span><br><span class="hljs-comment">//expect(['bar', 'baz'].includes(['bar'])).to.be.ok;</span><br><span class="hljs-comment">//console.log(foo.has('bar'));</span><br><span class="hljs-comment">//expect(foo).to.include.members(['bar']);</span><br><span class="hljs-comment">//expect([1, 2, 3]).to.include.members([3, 2]);</span><br><span class="hljs-comment">//expect([1,2,3]).to.include(2);</span></code></pre>
+          </div>
+          <!-- Test Error Stack -->
+          <div class="test-error-stack collapse">
+            <pre><code class="hljs small">AssertionError: expected {} to have a property <span class="hljs-string">'length'</span><br>    at Assertion.assertLength (C:\nodejs\node_global\node_modules\chai\lib\chai\core\assertions.js:<span class="hljs-number">1042</span>:<span class="hljs-number">37</span>)<br>    at Assertion.assert (C:\nodejs\node_global\node_modules\chai\lib\chai\utils\addChainableMethod.js:<span class="hljs-number">84</span>:<span class="hljs-number">49</span>)<br>    at Context.&lt;anonymous&gt; (hello1.js:<span class="hljs-number">151</span>:<span class="hljs-number">58</span>)</code></pre>
+          </div>
+        </div>        </div>
+              </div>
+            </div>
+        
+        
+          </div>
+        </section>
+        
+          </div>
+        </section>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>Report generated by <a href="http://adamgruber.github.io/mochawesome/" target="_blank">mochawesome</a>.<br>Designed and built by <a href="https://github.com/adamgruber" target="_blank">adamgruber</a>. &copy;2016.</p>
+      </div>
+    </footer>
+
+    <!-- Nav Menu -->
+    <div class="nav-menu-wrap">
+      <div class="menu-overlay close-menu"></div>
+      <nav class="menu">
+        <button class="nav-menu-btn close-menu"><i class="icon-failed"></i></button>
+        <ul class="list-unstyled main-menu">
+                <li class="nav-menu-item">
+                <a href="#69d4da9b-65d2-4121-9e06-8fe7bea453c9" class="nav-menu-item-link">obj property test</a>
+                  <ul class="list-unstyled sub-menu">
+                    <li class="nav-menu-item">
+                <a href="#99495a08-c968-4eb9-a605-17f2a1595ae2" class="nav-menu-item-link has-passes">simple obj property have</a>
+            </li>
+                  </ul>
+                  <ul class="list-unstyled sub-menu">
+                    <li class="nav-menu-item">
+                <a href="#6db15a9c-1d68-4032-bd70-b0439652f87d" class="nav-menu-item-link has-passes">deep obj property have</a>
+            </li>
+                  </ul>
+                  <ul class="list-unstyled sub-menu">
+                    <li class="nav-menu-item">
+                <a href="#8fd6b8a3-1170-4c2c-9bbd-4eb3b8899981" class="nav-menu-item-link has-failures">array test</a>
+            </li>
+                  </ul>
+            </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/vendor.js"></script>
+    <script src="js/mochawesome.js"></script>
+  </body>
+</html>

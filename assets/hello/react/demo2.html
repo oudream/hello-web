@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./../../3rd/react-15.6.1.js"></script>
+    <script src="./../../3rd/react-dom-15.6.1.js"></script>
+    <script src="./../../3rd/babel-6.25.0.js"></script>
+
+    <!--<script src="../build/react.js"></script>-->
+    <!--<script src="../build/react-dom.js"></script>-->
+    <!--<script src="../build/browser.min.js"></script>-->
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+      var names = ['Alice', 'Emily', 'Kate'];
+
+      ReactDOM.render(
+        <div>
+        {
+          names.map(function (name) {
+            return <div>Hello, {name}!</div>
+          })
+        }
+        </div>,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

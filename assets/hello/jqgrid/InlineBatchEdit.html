@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <script src="./../../3rd/jquery-3.1.1.js"></script>
+    <script src="./../../3rd/jqGrid-5.2.1/js/jquery.jqGrid.js"></script>
+    <script src="./../../3rd/jqGrid-5.2.1/js/i18n/grid.locale-cn.js"></script>
+    <script src="./../../3rd/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="./../../3rd/jquery-ui-1.12.1/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./../../3rd/jqGrid-5.2.1/css/ui.jqgrid.css" />
+
+    <!--&lt;!&ndash; The jQuery library is a prerequisite for all jqSuite products &ndash;&gt;-->
+    <!--<script type="text/ecmascript" src="../../../js/jquery.min.js"></script>-->
+    <!--&lt;!&ndash; This is the Javascript file of jqGrid &ndash;&gt;-->
+    <!--<script type="text/ecmascript" src="../../../js/trirand/jquery.jqGrid.min.js"></script>-->
+    <!--&lt;!&ndash; This is the localization file of the grid controlling messages, labels, etc.&ndash;&gt;-->
+    <!--&lt;!&ndash; We support more than 40 localizations &ndash;&gt;-->
+    <!--<script type="text/ecmascript" src="../../../js/trirand/i18n/grid.locale-en.js"></script>-->
+    <!--&lt;!&ndash; A link to a jQuery UI ThemeRoller theme, more than 22 built-in and many more custom &ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="../../../css/jquery-ui.css" />-->
+    <!--&lt;!&ndash; The link to the CSS that the grid needs &ndash;&gt;-->
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="../../../css/trirand/ui.jqgrid.css" />-->
+    <meta charset="utf-8" />
+    <title>jqGrid Loading Data - Inline Batch Editing</title>
+</head>
+<body>
+
+<br /><br />
+
+<input type="button" value="Edit in Batch Mode" onclick="startEdit()" />
+<input type="button" value="Save All Rows" onclick="saveRows()" />
+
+<br /><br />
+
+<table id="jqGrid"></table>
+<div id="jqGridPager"></div>
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    $("#jqGrid").jqGrid({
+      url: 'data.member.json',
+      editurl: 'clientArray',
+      datatype: "json",
+      colModel: [
+        {
+          label: "Employee ID",
+          name: 'EmployeeID',
+          width: 75
+        },
+        {
+          label: "First Name",
+          name: 'FirstName',
+          width: 140,
+          editable: true // must set editable to true if you want to make the field editable
+        },
+        {
+          label: "Last Name",
+          name: 'LastName',
+          width: 100,
+          editable: true
+        },
+        {
+          label : "City",
+          name: 'City',
+          width: 120,
+          editable: true
+        }
+      ],
+      sortname: 'EmployeeID',
+      loadonce : true,
+      viewrecords: true,
+      width: 780,
+      height: 200,
+      rowNum: 10,
+      pager: "#jqGridPager"
+    });
+  });
+
+  function startEdit() {
+    var grid = $("#jqGrid");
+    var ids = grid.jqGrid('getDataIDs');
+
+    for (var i = 0; i < ids.length; i++) {
+      grid.jqGrid('editRow',ids[i]);
+    }
+  };
+
+  function saveRows() {
+    var grid = $("#jqGrid");
+    var ids = grid.jqGrid('getDataIDs');
+
+    for (var i = 0; i < ids.length; i++) {
+      grid.jqGrid('saveRow', ids[i]);
+    }
+  }
+
+</script>
+
+
+</body>
+</html>

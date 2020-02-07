@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="bn1" style="width: 100px; height: 20px">click1</button>
+<button id="bn2" style="width: 100px; height: 20px">click2</button>
+<button id="bn3" style="width: 100px; height: 20px">click3</button>
+<button id="bn4" style="width: 100px; height: 20px">click4</button>
+
+<script>
+
+
+    document.getElementById('bn1').addEventListener('click', () => {
+        var data = [
+            ["张朋", "男", new Date("1994-02-02")],
+            ["李艳", "女", new Date("1993-03-03")],
+        ];
+
+        function processRow (row) {
+            var finalVal = '';
+            for (var j = 0; j < row.length; j++) {
+                var innerValue = row[j] === null ? '' : row[j].toString();
+                if (row[j] instanceof Date) {
+                    innerValue = row[j].toLocaleString();
+                };
+                var result = innerValue.replace(/"/g, '""');
+                if (result.search(/("|,|\n)/g) >= 0)
+                    result = '"' + result + '"';
+                if (j > 0)
+                    finalVal += ',';
+                finalVal += result;
+            }
+            return finalVal;
+        };
+
+        var csvString = data.map(function(item){return processRow(item)}).join("\n");
+
+        //前置的"\uFEFF"为“零宽不换行空格”，可处理中文乱码问题
+        var blob = new Blob(["\uFEFF" + csvString], { type: 'text/csv;charset=gb2312;' });
+
+        var a = document.createElement('a');
+        a.download = 'name.csv';//这里替换为你需要的文件名
+        a.href = URL.createObjectURL(blob);
+        a.click();
+
+        console.log('ok');
+    });
+
+    document.getElementById('bn2').addEventListener('click', () => {
+        const rows = [
+            ["name1", "city1", "some other info"],
+            ["name2", "city2", "more info"]
+        ];
+
+        let csvContent = "data:text/csv;charset=utf-8,"
+            + rows.map(e => e.join(",")).join("\n");
+        // var encodedUri = encodeURI(csvContent);
+        // window.open(csvContent,
+
+        var s = 'Thierry Frémaux: Les confiden'
+        var url = 'http://example.com/?alt_title=' + encodeURIComponent(s)
+
+        window.open(url,
+        );
+    });
+
+    document.getElementById('bn3').addEventListener('click', () => {
+        window.open(
+            "http://www.domainname.ext/path/ImgFile.png",
+            "DescriptiveWindowName",
+            "width=420,height=230,resizable,scrollbars=yes,status=1"
+        );
+    });
+
+    document.getElementById('bn4').addEventListener("click", () => {
+        var data = [
+            ["张朋", "男", new Date("1994-02-02")],
+            ["李艳", "女", new Date("1993-03-03")],
+        ];
+
+        function processRow (row) {
+            var finalVal = '';
+            for (var j = 0; j < row.length; j++) {
+                var innerValue = row[j] === null ? '' : row[j].toString();
+                if (row[j] instanceof Date) {
+                    innerValue = row[j].toLocaleString();
+                };
+                var result = innerValue.replace(/"/g, '""');
+                if (result.search(/("|,|\n)/g) >= 0)
+                    result = '"' + result + '"';
+                if (j > 0)
+                    finalVal += ',';
+                finalVal += result;
+            }
+            return finalVal;
+        };
+
+        var csvString = data.map(function(item){return processRow(item)}).join("\n");
+
+        var w = window.open("");
+        w.document.write(csvString);
+
+        console.log('ok');
+    });
+
+</script>
+
+</body>
+</html>

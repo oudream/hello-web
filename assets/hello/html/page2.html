@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="UTF-8">
+    <title>sls-page.js示例</title>
+    <link rel="stylesheet" href="https://www.sailengsi.com/Public/common/other/bs/css/bootstrap.min.css">
+</head>
+<body>
+
+<h2>总页数和总数量只需要传一个</h2>
+<ul class="pagination"></ul>
+
+<script src="./../3rd/jquery-3.1.1.js"></script>
+
+<script>
+  CjAlgorithmPage = function (option) {
+    let defaultOption = {
+      totalRecord: 0,
+      pageSize: 1,
+      displayPageCount: 1
+    }
+
+    this.totalPage = 0
+    this.currentPage = 0
+    this.currentSize = 0
+    this.currentBegin = 0
+    this.currentEnd = 0
+    this.displayPageFirst = 0
+    this.displayPageLast = 0
+
+    this.isValidOption = function (option) {
+      let option2 = option
+      if (typeof option2 !== 'object') option2 = this.option
+      if (typeof option2 !== 'object') return false
+      if (typeof option2.totalRecord !== 'number' || option2.totalRecord % 1 === 0) return false
+      if (typeof option2.pageSize !== 'number' || option2.pageSize % 1 === 0) return false
+      if (typeof option2.displayPageCount !== 'number' || option2.displayPageCount % 1 === 0) return false
+      if (option2.totalRecord < 1 || option2.totalRecord > 0x7FFFFFFF) return false
+      if (option2.pageSize < 1 || option2.pageSize > 0x7FFF) return false
+      if (option2.displayPageCount < 1 || option2.displayPageCount > 0x7F) return false
+    }
+
+    this.isValid = function () {
+      return this.totalPage > 0
+    }
+
+    this.setPage = function (page) {
+      if (typeof page !== 'number') return false
+      if (page < 1 || page > this.totalPage) return false
+      this.currentPage = page
+      this.currentSize = page < this.totalPage ? this.option.pageSize : (this.option.totalRecord % this.option.pageSize).toFixed()
+      this.currentBegin = (page - 1) * this.option.pageSize
+      this.currentEnd = page * this.option.pageSize
+      let iStep = (this.option.displayPageCount % 2).toFixed()
+      if (this.currentPage > iStep) {
+        if (this.option.displayPageCount % 2 !== 0) {
+          this.displayPageFirst = this.currentPage - iStep
+          this.displayPageLast = this.currentPage + iStep
+        } else {
+          this.displayPageFirst = this.currentPage - iStep + 1
+          this.displayPageLast = this.currentPage + iStep
+        }
+      } else {
+        this.displayPageFirst = 1
+        this.displayPageLast = this.option.displayPageCount
+      }
+    }
+
+    if (!this.isValidOption(option)) {
+      console.log('CjAlgorithmPage option is invalid,')
+      this.option = defaultOption
+    } else {
+      this.option = option
+    }
+    if (this.option.totalRecord > 0) {
+      if (this.option.totalRecord % this.option.pageSize === 0) {
+        this.totalPage = this.option.totalRecord / this.option.pageSize
+      } else {
+        this.totalPage = (this.option.totalRecord / this.option.pageSize).toFixed() + 1
+      }
+      this.setPage(1)
+    }
+  }
+
+  CjAlgorithmPage.prototype.next = function () {
+    return setPage(this.currentPage + 1)
+  }
+
+  CjAlgorithmPage.prototype.first = function () {
+    return setPage(1)
+  }
+
+  CjAlgorithmPage.prototype.last = function () {
+    return setPage(this.totalPage)
+  }
+
+  CjAlgorithmPage.prototype.next = function () {
+    return setPage(this.currentPage + 1)
+  }
+
+  CjAlgorithmPage.prototype.previous = function () {
+    return setPage(this.currentPage - 1)
+  }
+
+
+</script>
+
+<script>
+  var pageContainer = $('.pagination')
+  var slsPage = new SlsPage({
+    //以下两个如果都传，page_total优先级高于page_count
+    //总数40，每页3条，总页数应该是14条
+    page_total: 40,
+    page_count: 7,
+    page_size: 3,
+    callback: function (infos) {
+      // console.log(infos);
+
+      var str = ''
+      //为false，代表首页没有了
+      if (infos.page_first.page !== false) {
+        str += '<li data-page=' + infos.page_first.page + '><a href="javascript:;">' + infos.page_first.text + '</a></li>'
+      }
+      //为false，代表上一页没有了
+      if (infos.page_prev.page !== false) {
+        str += '<li data-page=' + infos.page_prev.page + '><a href="javascript:;">' + infos.page_prev.text + '</a></li>'
+      }
+      //中间的页码列表
+      for (var i = 0; i < infos.page_lists.length; i++) {
+        var cur = ''
+        if (infos.page_lists[i].page == infos.page_cur) {
+          cur = ' active'
+        }
+        str += '<li data-page=' + infos.page_lists[i].page + ' class="' + cur + '"><a href="javascript:;">' + infos.page_lists[i].page + '</a></li>'
+      }
+      //为false，代表下一页没有了
+      if (infos.page_next.page !== false) {
+        str += '<li data-page=' + infos.page_next.page + '><a href="javascript:;">' + infos.page_next.text + '</a></li>'
+      }
+      //为false，代表尾页没有了
+      if (infos.page_last.page !== false) {
+        str += '<li data-page=' + infos.page_last.page + '><a href="javascript:;">' + infos.page_last.text + '</a></li>'
+      }
+      pageContainer.html(str)
+      // console.log('当前更新结束');
+    }
+  })
+  pageContainer.on('click', 'li', function () {
+    var curPage = parseInt($(this).data('page'))
+    slsPage.setCurPage(curPage)
+  })
+</script>
+</body>
+</html>
