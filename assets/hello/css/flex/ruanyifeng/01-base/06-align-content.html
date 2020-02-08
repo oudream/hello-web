@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-container-1 {
+            display: flex;
+            height: 500px;
+            border: 1px solid #ccc;
+            flex-flow: row wrap;
+            align-content: stretch;
+        }
+
+        .box-container-2 {
+            display: flex;
+            height: 500px;
+            border: 1px solid #ccc;
+            flex-flow: row wrap;
+            align-content: flex-start;
+        }
+
+        .box-container-3 {
+            display: flex;
+            height: 500px;
+            border: 1px solid #ccc;
+            flex-flow: row wrap;
+            align-content: flex-end;
+        }
+
+        .box-container-4 {
+            display: flex;
+            height: 500px;
+            border: 1px solid #ccc;
+            flex-flow: row wrap;
+            align-content: center;
+        }
+
+        .box-container-5 {
+            display: flex;
+            height: 500px;
+            border: 1px solid #ccc;
+            flex-flow: row wrap;
+            align-content: space-between;
+        }
+
+        .box-container-6 {
+            display: flex;
+            height: 500px;
+            border: 1px solid #ccc;
+            flex-flow: row wrap;
+            align-content: space-around;
+        }
+
+        .box {
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, .5);
+            margin: 5px;
+        }
+
+        .box-1 {
+            width: 100px;
+            height: 50px;
+        }
+
+        .box-2 {
+            width: 100px;
+            height: 150px;
+        }
+
+        .box-3 {
+            width: 100px;
+            height: 100px;
+        }
+
+        .box-4 {
+            width: 100px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>align-content</h1>
+    <q>默认flex的容器
+        flex-flow: row wrap;
+        height: 500px;
+        border: 1px solid #ccc;
+    </q>
+
+    <h2>align-content: stretch; default (轴线占满整个交叉轴)</h2>
+    <div class="box-container-1">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-4">3</div>
+        <div class="box box-1">4</div>
+        <div class="box box-2">5</div>
+        <div class="box box-3">6</div>
+        <div class="box box-1">7</div>
+        <div class="box box-2">8</div>
+        <div class="box box-3">9</div>
+        <div class="box box-1">10</div>
+        <div class="box box-2">11</div>
+        <div class="box box-3">12</div>
+    </div>
+
+    <h2>align-content: flex-start; </h2>
+    <div class="box-container-2">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+        <div class="box box-2">5</div>
+        <div class="box box-3">6</div>
+        <div class="box box-1">7</div>
+        <div class="box box-2">8</div>
+        <div class="box box-3">9</div>
+        <div class="box box-1">10</div>
+        <div class="box box-2">11</div>
+        <div class="box box-3">12</div>
+    </div>
+
+    <h2>align-content: flex-end; </h2>
+    <div class="box-container-3">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-1">4</div>
+        <div class="box box-2">5</div>
+        <div class="box box-3">6</div>
+        <div class="box box-1">7</div>
+        <div class="box box-2">8</div>
+        <div class="box box-3">9</div>
+        <div class="box box-1">10</div>
+        <div class="box box-2">11</div>
+        <div class="box box-3">12</div>
+    </div>
+
+    <h2>align-content: center; </h2>
+    <div class="box-container-4">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-1">4</div>
+        <div class="box box-2">5</div>
+        <div class="box box-3">6</div>
+        <div class="box box-1">7</div>
+        <div class="box box-2">8</div>
+        <div class="box box-3">9</div>
+        <div class="box box-1">10</div>
+        <div class="box box-2">11</div>
+        <div class="box box-3">12</div>
+    </div>
+
+    <h2>align-content: space-between; (交叉轴两端对齐)) </h2>
+    <div class="box-container-5">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-1">4</div>
+        <div class="box box-2">5</div>
+        <div class="box box-3">6</div>
+        <div class="box box-1">7</div>
+        <div class="box box-2">8</div>
+        <div class="box box-3">9</div>
+        <div class="box box-1">10</div>
+        <div class="box box-2">11</div>
+        <div class="box box-3">12</div>
+    </div>
+
+    <h2>align-content: space-around; (交叉轴间隔相等，item之间大于等于两倍)))</h2>
+    <div class="box-container-6">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-1">4</div>
+        <div class="box box-2">5</div>
+        <div class="box box-3">6</div>
+        <div class="box box-1">7</div>
+        <div class="box box-2">8</div>
+        <div class="box box-3">9</div>
+        <div class="box box-1">10</div>
+        <div class="box box-2">11</div>
+        <div class="box box-3">12</div>
+    </div>
+    
+</body>
+
+</html>

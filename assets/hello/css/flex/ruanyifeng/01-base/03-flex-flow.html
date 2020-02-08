@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-container-1 {
+            display: flex;
+            flex-flow: row nowrap;
+        }
+
+        .box-container-2 {
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .box-container-3 {
+            display: flex;
+            flex-flow: row wrap-reverse;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, .5);
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>flex-flow</h1>
+    <p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+    <h2>flex-flow: row nowrap; default</h2>
+    <div class="box-container-1">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+    </div>
+
+    <h2>flex-flow: row wrap;</h2>
+    <div class="box-container-2">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+    </div>
+
+    <h2>flex-flow: row wrap-reverse;</h2>
+    <div class="box-container-3">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+    </div>
+</body>
+
+</html>

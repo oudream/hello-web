@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>单项目</title>
+</head>
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        background: black;
+        margin: 0px;
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    [class$="box"] {
+        margin: 16px;
+        padding: 4px;
+
+        background-color: #e7e7e7;
+        width: 104px;
+        height: 104px;
+        object-fit: contain;
+
+        box-shadow: inset 0 5px white,
+        inset 0 -5px #bbb,
+        inset 5px 0 #d7d7d7,
+        inset -5px 0 #d7d7d7;
+
+        border-radius: 10%;
+    }
+
+    [class$="item"] {
+        display: block;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        margin: 4px;
+
+        background-color: #333;
+        box-shadow: inset 0 3px #111, inset 0 -3px #555;
+    }
+
+    .first-box {
+        display: flex;
+    }
+
+    .second-box {
+        display: flex;
+        justify-content: center;
+    }
+
+    .third-box {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .fourth-box {
+        display: flex;
+        align-items: center;
+    }
+
+    .fifth-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sixth-box {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .seventh-box {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .eighth-box {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .ninth-box {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+
+</style>
+<body>
+<!--
+强化记忆
+justify-content和align-items皆为flex容器属性.
+以flex-direction, 默认方向为例(默认主轴水平从左向右, 副轴从上向下)
+justify-content负责主轴的排序方式, flex-start为左, center为中, flex-end为右
+align-items负责副轴的排序方式, flex-start为上, center为中, flex-end为下
+-->
+<div class="first-box">
+    <span class="item"></span>
+</div>
+<div class="second-box">
+    <span class="item"></span>
+</div>
+<div class="third-box">
+    <span class="item"></span>
+</div>
+<div class="fourth-box">
+    <span class="item"></span>
+</div>
+<div class="fifth-box">
+    <span class="item"></span>
+</div>
+<div class="sixth-box">
+    <span class="item"></span>
+</div>
+<div class="seventh-box">
+    <span class="item"></span>
+</div>
+<div class="eighth-box">
+    <span class="item"></span>
+</div>
+<div class="ninth-box">
+    <span class="item"></span>
+</div>
+</body>
+</html>

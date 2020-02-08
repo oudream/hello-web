@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-container {
+            display: flex;
+        }
+
+        .box {
+            width: 150px;
+            height: 100px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, .5);
+            margin: 5px;
+            flex-shrink: 1;
+        }
+
+        .box-1 {
+            flex-shrink: 0;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>flex-shrink</h1>
+    <q>以默认的flex-flow: row nowrap;为例</q>
+    <h2>如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。</h2>
+    <div class="box-container">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+    </div>
+
+    <h2>如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。</h2>
+    <div class="box-container">
+        <div class="box">1</div>
+        <div class="box box-1">2 flex-shrink 0</div>
+        <div class="box">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box box-1">6 flex-shrink 0</div>
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+        <div class="box">10</div>
+    </div>
+</body>
+
+</html>

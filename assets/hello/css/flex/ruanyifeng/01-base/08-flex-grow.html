@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-container {
+            display: flex;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, .5);
+            margin: 5px;
+        }
+
+        .box-1,
+        .box-2,
+        .box-3 {
+            flex-grow: 1;
+        }
+
+        .box-4,
+        .box-6 {
+            flex-grow: 1;
+        }
+
+        .box-5 {
+            flex-grow: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>flex-grow</h1>
+    <q>以默认的flex-flow: row nowrap;为例</q>
+    <h2>如果所有项目的flex-grow属性都为1，则它们将等分剩余空间（如果有的话）。</h2>
+    <div class="box-container">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+    </div>
+
+    <h2>如果一个项目的flex-grow属性为2，其他项目都为1，如果剩余空间不足一倍则前者占据的剩余空间，否则将比其他项多一倍。</h2>
+    <div class="box-container">
+        <div class="box box-4">1</div>
+        <div class="box box-5">2</div>
+        <div class="box box-6">3</div>
+    </div>
+</body>
+
+</html>

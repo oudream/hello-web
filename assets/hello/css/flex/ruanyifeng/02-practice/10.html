@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>输入框布局</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .InputAddOn {
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+        }
+
+        .InputAddOn-field {
+            flex: 1;
+        }
+
+    </style>
+</head>
+<body>
+<div class="InputAddOn">
+    <span class="InputAddOn-item">PREFIX</span>
+    <input class="InputAddOn-field">
+    <button class="InputAddOn-item">SUFFIX</button>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>固定的底栏</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .Site {
+            display: flex;
+            /* 100vh == 视口高度*/
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .Site-content {
+            flex: 1;
+        }
+
+    </style>
+</head>
+<body class="Site">
+<header>..header..</header>
+<main class="Site-content">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores eos error perferendis sint tenetur. Assumenda blanditiis distinctio dolorum eius facilis nulla quisquam, similique voluptate. Aliquid iure magnam nemo soluta unde.
+</main>
+<footer>..footer..</footer>
+</body>
+</html>

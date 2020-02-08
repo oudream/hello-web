@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-container-1 {
+            display: flex;
+        }
+
+        .box-container-2 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, .5);
+            margin: 5px;
+        }
+
+        .box-1 {
+            order: 1;
+        }
+
+        .box-2 {
+            order: 0;
+        }
+
+        .box-3 {
+            order: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>order</h1>
+    <q>以默认的flex-flow: row nowrap;为例</q>
+    <h2>flex-direction: row;</h2>
+    <div class="box-container-1">
+        <div class="box box-1">1
+            <br> order: 1;
+        </div>
+        <div class="box box-2">2
+            <br> order: 0;
+        </div>
+        <div class="box box-3">3
+            <br> order: 2;
+        </div>
+    </div>
+
+    <h2>flex-direction: column;</h2>
+    <div class="box-container-2">
+        <div class="box box-1">1
+            <br> order: 1;
+        </div>
+        <div class="box box-2">2
+            <br> order: 0;
+        </div>
+        <div class="box box-3">3
+            <br> order: 2;
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation-fill-mode</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .box {
+            width: 100%;
+            height: 100px;
+            background: #00CB5D;
+            text-align: center;
+            line-height: 100px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .box:hover {
+            animation-name: changecolor;
+            animation-delay: 1s;
+            animation-duration: 3s;
+        }
+        .forwards {
+            animation-fill-mode: forwards;
+        }
+        .backwards {
+            animation-fill-mode: backwards;
+        }
+        .both {
+            animation-fill-mode: both;
+        }
+        
+        @keyframes changecolor {
+            0% {
+                background-color: #f1c40f;
+            }
+            100% {
+                background-color: #e74c3c;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1> Hover over to see how animation-fill-mode reacts.  - <small><em>The animation-delay property is set to 1 second.</em></small></h1>
+    <p class="box">NONE</p>
+    <p class="box forwards">FORWARDS - stays red at end</p>
+    <p class="box backwards">BACKWARDS -turns yellow immediately, then waits the delay</p>
+    <p class="box both">BOTH - turns yellow immediately and stays red at end</p>
+</body>
+</html>

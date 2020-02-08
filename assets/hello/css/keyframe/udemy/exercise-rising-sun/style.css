@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+    animation: skyCycle;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    overflow: none;
+}
+.grass {
+    background: green;
+    height: 35vh;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+.sun {
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    box-shadow: 0 0 50px 35px rgba(255, 95, 3, 0.3);
+    position: absolute;
+    bottom: 0;
+    animation: sunCycle;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes skyCycle{
+    0% {
+        background: #2c3e50;
+    }
+    20% {
+        background: pink;
+    }
+    40% {
+        background: skyblue;
+    }
+    60% {
+        background: skyblue;
+    }
+    80% {
+        background: pink;
+    }
+    100% {
+        background: #2c3e50;
+    }
+}
+@keyframes sunCycle {
+    0% {
+        transform: translate(0vw, -10vh);
+        background: #FF8D09;
+    }
+    25% {
+        /* transform: translate(10vw,-65vh); */
+        background: #f1c40f;
+    }
+    50% {
+        transform: translate(40vw,-80vh);
+    }
+    75% {
+        /* transform: translate(70vw,-65vh); */
+        background: #f1c40f;
+    }
+    100% {
+        transform: translate(90vw,-10vh);
+        background: #E04005;
+    }
+
+}

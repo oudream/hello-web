@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jiggle button</title>
+    <style>
+        body {
+            width: 100%;
+            overflow: hidden;
+            padding: 0;
+            background: hsla(0, 5%, 5%, 1);
+        }
+        .container {
+            text-align: center;
+        }
+        a {
+            margin: 20px;
+            text-decoration: none;
+        }
+        .btn {
+            display: inline-block;
+            border-radius: 5px;
+            box-shadow: 1px 1px 10px 3px hsla(0, 0%, 0%, .6);
+            width: 5em;
+            padding: 1em;
+            color: hsla(255, 255%, 255%, 1);
+            text-align: center;
+            text-shadow: 0 2px 0 hsla(0, 0%, 0%, .25);
+            font: 400 1.5em /1 'Raleway', sans-serif;
+            letter-spacing: 4px;
+            background: hsla(155, 95%, 35%, 1);
+            cursor: pointer;
+        }
+        .anim {
+            animation-name: jiggle;
+            animation-duration: 2s;
+            animation-timing-function: ease-in;
+        }
+        .infinite{
+            animation-iteration-count: infinite;
+        }
+        .five {
+            animation-iteration-count: 5;
+        }
+        .two {
+            animation-iteration-count: 2;
+        }
+
+        @keyframes jiggle {
+            48%, 62% {
+                transform: scale(1.0, 1.0)
+            }
+            50% {
+                transform: scale(1.1, 0.9)
+            }
+            56% {
+                transform: scale(0.9, 1.1) translate(0, -5px)
+            }
+            59% {
+                transform: scale(1.0, 1.0) translate(0, -3px)
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href='#' class="btn anim infinite">Infinite Jiggles</a>
+        <a href='#' class="btn anim five">Five Jiggles</a>
+        <a href='#' class="btn anim two">Two Jiggles</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transition-basics</title>
+    <style>
+        .box {
+            background: #9b59b6;
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            text-align: center;
+            color: white;
+            font-size: 17px;
+            border-radius: 20px;            
+        }
+        .box:hover:not(.timing) {
+            background: #e74c3c;
+            transform-origin: top left;
+            transform: scale(1.5);
+            border-radius: 50px;
+        }
+        .animated1 {
+            transition-duration: 2s;
+        }
+        .animated2 {
+            transition-property: background;
+            transition-duration: 2s;
+        }
+        .animated3 {
+            transition-property: background, border-radius;
+            transition-duration: 0.5s, 4s;
+        }
+        .animated4 {
+            transition-property: background, border-radius;
+            transition-duration: 0.5s, 4s;
+            transition-delay: 2s, 0.5s;
+        }        
+        .animated5 {
+            transition-property: transform;
+            transition-duration: 1s;
+            transition-timing-function: linear;
+        }
+        .animated6 {
+            transition-property: transform;
+            transition-duration: 1s;
+            transition-timing-function: ease-in-out;
+        }
+        .animated7 {
+            transition: transform 2s ease-out 1s, 
+                        background-color 0.5s linear; 
+        }
+        .animated7:hover {
+            background-color: teal;
+        }
+        .timing:hover {
+            transform: translateX(300px);
+        }
+    </style>
+</head>
+<body>
+    <p class="box">BORING</p>
+    <p class="animated1 box">ANIMATED</p>
+    <p class="animated2 box">ANIMATED</p>
+    <p class="animated3 box">ANIMATED</p>
+    <p class="animated4 box">ANIMATED</p>
+    <p class="animated5 box timing">ANIMATED</p>
+    <p class="animated6 box timing">ANIMATED</p>
+    <p class="animated7 box timing">ANIMATED</p>
+</body>
+</html>

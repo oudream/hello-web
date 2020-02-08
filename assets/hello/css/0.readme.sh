@@ -29,7 +29,7 @@ open https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_propertie
 open https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform
 open https://developer.mozilla.org/zh-CN/docs/Web/CSS/Value_definition_syntax
 open https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Types
-open https://developer.mozilla.org/zh-CN/docs/Web/CSS/color_value#rgb()
+open "https://developer.mozilla.org/zh-CN/docs/Web/CSS/color_value#rgb()"
 open https://developer.mozilla.org/zh-CN/docs/Web/CSS/filter
 open https://developer.mozilla.org/zh-CN/docs/Web/CSS
 open https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model

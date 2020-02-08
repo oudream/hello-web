@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>https://developer.mozilla.org/zh-CN/docs/Web/CSS/vertical-align</title>
+    <title>https://developer.mozilla.org/zh-CN/docs/Web/CSS/text-align</title>
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* text-align vertical-align*/
+        .div1 {
+            margin: 1em;
+            width: calc(16em + 4px);
+            height: calc(16em + 4px);
+            border: 1px solid black;
+            background: #0FA0CE;
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .div2 {
+            width: calc(1em + 1px);
+            height: calc(1em + 1px);
+            border: 1px solid red;
+            display: inline-block;
+        }
+
+        /* position */
+        .div3 {
+            margin: 1em;
+            width: calc(16em + 4px);
+            height: calc(16em + 4px);
+            border: 1px solid black;
+            background: #0FA0CE;
+            position: relative;
+        }
+
+        .div4 {
+            width: calc(1em + 1px);
+            height: calc(1em + 1px);
+            border: 1px solid red;
+            position: absolute;
+            top: 45%;
+            left: 45%;
+        }
+
+        /* flex布局 */
+        .div5 {
+            margin: 1em;
+            width: 16em;
+            height: 16em;
+            border: 1px solid black;
+            background: #0FA0CE;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .div6 {
+            width: calc(1em + 4px);
+            height: calc(1em + 4px);
+            border: 64px solid red;
+            text-align: center;
+        }
+
+        /* transform: translateY */
+        .div7 {
+            width: 100px;
+            height: 100px;
+            background: #0FA0CE;
+        }
+    </style>
+
+</head>
+<body>
+
+<div>
+    <div class="div1">
+        <div class="div2">
+            A
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="div3">
+        <div class="div4">
+            A
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="div5">
+        <div class="div6">
+            <span style="margin: 0">A</span>
+<!--            <p style="margin: 0">B</p>-->
+<!--            <p style="margin: 0">C</p>-->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

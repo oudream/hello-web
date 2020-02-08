@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>animation-play-state</title>
+    <style>
+        hr {
+            margin: 25px;
+        }
+        .box {
+            background: #9b59b6;
+            height: 100px;
+            width: 300px;
+            line-height: 100px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            animation-name: slideRight;
+            animation-iteration-count: infinite;
+            animation-delay: 0;
+            animation-duration: 5s;
+        }
+        .box:hover {
+            animation-play-state: paused;
+        }
+
+        .paused {
+            animation-play-state: paused;
+        }
+        .paused:hover {
+            animation-play-state: running;
+        }
+
+        @keyframes slideRight {
+            100% {
+                transform: translateX(500px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <p class="box">Hover over me to pause</p>
+    <p class="box paused">Hover over me to run</p>
+</body>
+</html>

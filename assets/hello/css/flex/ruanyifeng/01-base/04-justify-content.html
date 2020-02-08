@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="main.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box-container-1 {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .box-container-2 {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .box-container-3 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .box-container-4 {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box-container-5 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, .5);
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>justify-content</h1>
+    <q>以默认的flex-flow: row nowrap;为例</q>
+    <h2>justify-content: flex-start; default (左对齐)</h2>
+    <div class="box-container-1">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>justify-content: flex-end; (右对齐)</h2>
+    <div class="box-container-2">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>justify-content: center; (居中对齐)</h2>
+    <div class="box-container-3">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>justify-content: space-between; (两端对齐)</h2>
+    <div class="box-container-4">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <h2>justify-content: space-around; (每个item的左右侧间隔相等，项目之间间隔可能两倍以上)</h2>
+    <div class="box-container-5">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+</body>
+
+</html>

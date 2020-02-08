@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ugly Rainbow Text - Keyframes</title>
+    <style>
+        p {
+            font-size: 20px;
+            width: 200px;
+            animation-name: rainbowtext;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-delay: 0s;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes rainbowtext {
+            0% {
+                color: red;
+            }
+            25% {
+                color: orange;
+            }
+            50% {
+                color: yellow;
+                transform: translateX(200px) scale(2);
+            }
+            75% {
+                color: green;
+            }
+            100% {
+                color: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <p>HELLO</p>    
+</body>
+</html>

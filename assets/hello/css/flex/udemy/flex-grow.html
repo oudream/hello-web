@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex-grow</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+        .container {
+            border: 10px solid black;
+        }
+        .box {
+            font-size: 100px;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-family: Lato, Helvetica, sans-serif;
+            font-weight: 300;
+        }
+        .box-1 { background: #e51400; }
+        .box-2 { background: #fa6800; }
+        .box-3 { background: #f0a30a; }
+        .box-4 { background: #e3c800; }
+        .box-5 { background: #a4c400; }
+        .box-6 { background: #60a917; }
+        .box-7 { background: #60aba9; }
+        .box-8 { background: #1ba1e2; }
+        .box-9 { background: #aa00ff; }
+        
+        /* Let's play with flex */
+        .container {
+            display: flex;
+        }
+        .box {
+            flex-basis: 100px;
+        }
+
+        .ex-2 .box { flex-grow: 1; }
+
+        .ex-3 .box-1 { flex-grow: 1; }
+
+        .ex-4 .box { flex-grow: 1; }
+        .ex-4 .box-2 { flex-grow: 2; }
+        
+        .ex-5 {
+            height: 800px;
+            flex-direction: column;
+        }
+        .ex-5 .box { flex-grow: 1; } 
+        .ex-5 .box-2 { flex-grow: 2; }
+
+        .ex-6 {
+            height: 800px;
+            flex-direction: column;
+        }
+        .ex-6 .box-4 { flex-grow: 1; }
+    </style>
+</head>
+<body>
+    <h2>container - display: flex;<br>box - flex-basis: 100px;</h2>    
+    <div class="container ex-1">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+    </div>
+    <h2>box - flex-grow: 1;</h2>
+    <div class="container ex-2">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+    </div>
+    <h2>
+        box 1 - flex-grow: 1;
+    </h2>  
+    <div class="container ex-3">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+    </div>
+    <h2>
+        box - flex-grow: 1;<br />
+        box 2 - flex-grow: 2;        
+    </h2>  
+    <div class="container ex-4">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+    </div>
+    <h2>
+        container - flex-direction: column;<br />            
+        container - height: 800px;<br />
+        box 4 - flex-grow: 1;
+    </h2>  
+    <div class="container ex-5">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+    </div>
+    <h2>
+        container - flex-direction: column;<br />            
+        container - height: 800px;<br />
+        box - flex-grow: 1;<br />
+        box 2 - flex-grow: 2;
+    </h2>  
+    <div class="container ex-6">
+        <div class="box box-1">1</div>
+        <div class="box box-2">2</div>
+        <div class="box box-3">3</div>
+        <div class="box box-4">4</div>
+    </div>
+    
+</body>
+</html>
