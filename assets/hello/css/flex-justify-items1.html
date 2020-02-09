@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .flex-justify1 {
+            display: flex;
+            flex-flow: row wrap;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify1 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify2 {
+            display: flex;
+            justify-items: flex-start;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify2 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify3 {
+            display: flex;
+            justify-items: flex-end;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify3 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify4 {
+            display: flex;
+            justify-items: auto;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify4 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify5 {
+            display: flex;
+            justify-items: baseline;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify5 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify5-1 {
+            display: flex;
+            justify-items: self-start;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify5-1 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify5-2 {
+            display: flex;
+            justify-items: stretch;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify5-2 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify6 {
+            display: flex;
+            justify-items: left;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify6 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify7 {
+            display: flex;
+            justify-items: right;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify7 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-justify8 {
+            display: flex;
+            justify-items: stretch;
+            background-color: DodgerBlue;
+        }
+
+        .flex-justify8 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>The flex-wrap Property</h1>
+
+<span>justify-items: center;</span>
+<div class="flex-justify1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: flex-start;</span>
+<div class="flex-justify2">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: flex-end;</span>
+<div class="flex-justify3">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: space-around;</span>
+<div class="flex-justify4">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: space-between;</span>
+<div class="flex-justify5">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: space-evenly;</span>
+<div class="flex-justify5-1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: stretch;</span>
+<div class="flex-justify5-2">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: left;</span>
+<div class="flex-justify6">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>justify-items: right;</span>
+<div class="flex-justify7">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<p>Try resizing the browser window.</p>
+
+</body>
+</html>

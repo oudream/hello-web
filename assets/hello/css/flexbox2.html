@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .flex-flow1 {
+            display: flex;
+            flex-flow: row wrap;
+            background-color: DodgerBlue;
+        }
+
+        .flex-flow1 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+
+        .flex-flow2 {
+            display: flex;
+            flex-flow: row wrap;
+            background-color: DodgerBlue;
+            align-items: center;
+        }
+
+        .flex-flow2 > div {
+            background-color: #f1f1f1;
+            width: 100px;
+            margin: 10px;
+            text-align: center;
+            vertical-align: center;
+            font-size: 30px;
+        }
+
+        .flex-flow3 {
+            display: flex;
+            flex-flow: column wrap;
+            height: 900px;
+            max-width: 400px;
+            background-color: DodgerBlue;
+            align-items: center;
+            justify-content: start;
+        }
+
+        .flex-flow3 > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            text-align: center;
+            vertical-align: center;
+            font-size: 30px;
+        }
+
+        .flex-flow4 {
+            display: flex;
+            flex-flow: column wrap;
+            height: 900px;
+            max-width: 400px;
+            background-color: DodgerBlue;
+            align-items: center;
+            justify-content: start;
+        }
+
+        .flex-flow4 > div {
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            text-align: center;
+            vertical-align: center;
+            font-size: 30px;
+            flex-grow: 1;
+        }
+
+    </style>
+</head>
+<body>
+<h1>The flex-wrap Property</h1>
+
+<span>flex-flow: row wrap;</span>
+<div class="flex-flow1">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>flex-flow: row wrap-reverse;</span>
+<div class="flex-flow2">
+    <div>1</div>
+    <div style="height: 3em; line-height: 3em">2</div>
+    <div style="height: 4em; line-height: 4em">3</div>
+    <div style="height: 5em; line-height: 5em">4</div>
+    <div style="height: 4em; line-height: 4em">5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>flex-flow: row wrap-reverse;</span>
+<div class="flex-flow3">
+    <div>1</div>
+    <div style="width: 3em; height: 3em; line-height: 3em; flex-grow: 1">2</div>
+    <div style="width: 4em; height: 4em; line-height: 3em">3</div>
+    <div style="width: 5em; height: 5em; line-height: 3em">4</div>
+    <div style="width: 4em; height: 4em; line-height: 3em">5</div>
+</div>
+
+<div style="height: 2em; background: #ba8b00"></div>
+
+<span>flex-flow: row wrap-reverse;</span>
+<div class="flex-flow4">
+    <div>1</div>
+    <div style="width: 3em;">2</div>
+    <div style="width: 4em;">3</div>
+    <div style="width: 5em;">4</div>
+    <div style="width: 4em;">5</div>
+</div>
+
+</body>
+</html>

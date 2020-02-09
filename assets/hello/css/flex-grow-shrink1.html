@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #content {
+            -ms-box-orient: horizontal;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -moz-flex;
+            display: -webkit-flex;
+            display: flex;
+
+            -webkit-justify-content: space-around;
+            justify-content: space-around;
+            -webkit-flex-flow: row wrap;
+            flex-flow: row wrap;
+            -webkit-align-items: stretch;
+            align-items: stretch;
+        }
+        .box {
+            flex-grow: 1;
+            border: 3px solid rgba(0,0,0,.2);
+        }
+        .box1 {
+            flex-grow: 2;
+            border: 3px solid rgba(0,0,0,.2);
+        }
+        .flex-container {
+            display: flex;
+            align-items: stretch;
+            background-color: #f1f1f1;
+        }
+        .flex-container>div {
+            background-color: DodgerBlue;
+            color: white;
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            line-height: 75px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<h4>This is a Flex-Grow</h4>
+<h5>A,B,C and F are flex-grow:1 . D and E are flex-grow:2 .</h5>
+<div id="content">
+    <div class="box" style="background-color:red;">A</div>
+    <div class="box" style="background-color:lightblue;">B</div>
+    <div class="box" style="background-color:yellow;">C</div>
+    <div class="box1" style="background-color:brown;">D</div>
+    <div class="box1" style="background-color:lightgreen;">E</div>
+    <div class="box" style="background-color:brown;">F</div>
+</div>
+
+
+<p>Do not let the third flex item shrink as much as the other flex items:</p>
+
+<div class="flex-container">
+    <div>1</div>
+    <div>2</div>
+    <div style="flex-shrink: 0">3</div>
+    <div>4</div>
+    <div style="flex-shrink: 0">5</div>
+    <div>6</div>
+    <div style="flex-shrink: 0">7</div>
+    <div style="flex-shrink: 0">8</div>
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+</div>
+
+</body>
+</html>
