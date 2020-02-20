@@ -1,4 +1,10 @@
-# hello-chart
+### CSS is a complete tutorial
+- [CSS](./assets/hello/css)
+
+
+### js is just a language level tutorial
+- [JS](./assets/hello/js)
+
 
 ### html template
 - [bsadmin](./assets/templates/bsadmin)
@@ -11,8 +17,9 @@
 
 
 ### custom hello list
-- [CSS](./assets/hello/css)
 - [Cookie](./assets/hello/cookie)
+- [Event Bus](./assets/hello/bus)
+- [Websocket](./assets/hello/websock)
 
 
 ### refer to
