@@ -23,6 +23,7 @@
         ele && (ele.textContent = s)
     };
 
+    // 提取字符串
     let test1 = () => {
         // 1、js截取两个字符串之间的内容：
 
@@ -43,6 +44,90 @@
     };
     test1();
 
+    // 提取字符串
+    let test2 = () => {
+        // 在多行中使用正则表达式
+        var s = "Please yes\nmake my day1!Please yes\nmake my day2!";
+        s.match(/yes.*day/);
+        // Returns null
+        s.match(/yes[^]*day/);
+        s.match(/(yes[^]*?day)/);
+        // Returns 0:'yes\nmake my day', 1:'yes\nmake my day'
+    };
+    test2();
+
+    // 提取字符串
+    let test3 = () => {
+        let data = "--------------------------fa1b4dc84321a582\n" +
+            "Content-Disposition: form-data; name=\"file.name\"\n" +
+            "\n" +
+            "a1\n" +
+            "--------------------------fa1b4dc84321a582\n" +
+            "Content-Disposition: form-data; name=\"file.content_type\"\n" +
+            "\n" +
+            "text/plain\n" +
+            "--------------------------fa1b4dc84321a582\n" +
+            "Content-Disposition: form-data; name=\"file.path\"\n" +
+            "\n" +
+            "/tmp/nginx_upload/0000000030\n" +
+            "--------------------------fa1b4dc84321a582\n" +
+            "Content-Disposition: form-data; name=\"file.md5\"\n" +
+            "\n" +
+            "c36cb28e18c75cff0c269ecf3806e1d4\n" +
+            "--------------------------fa1b4dc84321a582\n" +
+            "Content-Disposition: form-data; name=\"file.size\"\n" +
+            "\n" +
+            "490\n" +
+            "--------------------------fa1b4dc84321a582--\n";
+        let ss = data.match(/(file\.[^]*?[\S]*?--)/g);
+        let sss = {};
+        ss.map(s=>s.replace(/[ \f\n\r\t\v\-]/g,"")).forEach(s=>{
+            let a = s.split('"');
+            if (a.length > 1) {
+                if (a[0]==='file.size') {
+                    sss[a[0]]=Number(a[1]);
+                } else {
+                    sss[a[0]]=a[1];
+                }
+            }
+        })
+        /*
+            0: "file.name"↵↵a1↵--"
+            1: "file.content_type"↵↵text/plain↵--"
+            2: "file.path"↵↵/tmp/nginx_upload/0000000030↵--"
+            3: "file.md5"↵↵c36cb28e18c75cff0c269ecf3806e1d4↵--"
+            4: "file.size"↵↵490↵--"
+         */
+    };
+    test3();
+
+    // 交换字符串中的两个单词
+    let test4 = function() {
+        var re = /(\w+)\s(\w+)/;
+        var str = "John Smith";
+        var newstr = str.replace(re, "$2, $1");
+        // Smith, John
+        console.log(newstr);
+    };
+    test();
+
+    let test5 = function() {
+        var r = /\{ab(\d)ab}/g;
+        while ((resultS2 = r.exec("ab{ab8ab}c{ab9ab}")) != null) {
+            console.log(resultS2[1]);
+        }
+        r = /\{(\w*)}/g;
+        let resultS2 = undefined;
+        while ((resultS2 = r.exec("ab{ab8ab}c{ab9ab}")) != null) {
+            console.log(resultS2[1]);
+            console.log('---')
+        }
+        console.log(resultS2);
+        for (let i = 0; i < 10; i++) {
+            console.log(i);
+        }
+        console.log(i)
+    };
 
     let sReg1 = /cgi.1/;
 
