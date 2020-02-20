@@ -1,3 +1,14 @@
+
+### usage
+``` bash 
+
+git clone https://github.com/oudream/hello-web.git --recursive
+
+# If you are using windows, you can use ./nginx/nginx-1.15.9/nginx directly 
+# Else go to https://github.com/oudream/hello-nginx
+```
+
+
 ### CSS is a complete tutorial
 - [CSS](./assets/hello/css)
 
